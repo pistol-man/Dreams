@@ -6,7 +6,7 @@ import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
-import { Plus, Phone, MapPin, Clock, Shield, Camera, X, AlertTriangle, Navigation2 } from "lucide-react";
+import { Plus, Phone, MapPin, Clock, Shield, Camera, X, AlertTriangle, Navigation2, Send, Hospital } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { Switch } from "@/components/ui/switch";
 import { Alert, AlertDescription } from "@/components/ui/alert";
@@ -167,26 +167,42 @@ const UserDashboard = () => {
     
     if (hasCameraAccess) {
       setShowCamera(true);
-      // Notify emergency contacts
-      trustedContacts.forEach(contact => {
-        toast({
-          title: "Emergency Alert Sent",
-          description: `Alert sent to ${contact.name}`,
-        });
-      });
     } else {
       toast({
         title: "Camera Access Failed",
         description: cameraError || "Unable to access camera",
         variant: "destructive",
       });
-      // Still show SOS screen but without camera
       toast({
         title: "SOS Mode Active",
         description: "Operating without camera feed",
         variant: "default",
       });
     }
+
+    // Notify emergency contacts
+    trustedContacts.forEach(contact => {
+      toast({
+        title: "Emergency Alert Sent",
+        description: `Alert sent to ${contact.name}`,
+      });
+    });
+
+    // Simulate emergency service notifications
+    toast({
+      title: "Alert Sent to 181",
+      description: "Women's Helpline has been notified",
+    });
+
+    toast({
+      title: "Police Notified",
+      description: "Nearest police station has been alerted",
+    });
+
+    toast({
+      title: "Medical Alert",
+      description: "Nearest hospital has been notified",
+    });
   };
 
   const deactivateSOS = () => {
@@ -469,16 +485,19 @@ const UserDashboard = () => {
       </Card>
 
       {/* Quick Actions */}
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-        <Card className="shadow-soft rounded-2xl border-0 hover:shadow-glow transition-all duration-300 cursor-pointer">
-          <CardContent className="p-4">
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 md:gap-4">
+        <Card 
+          className="shadow-soft rounded-2xl border-0 hover:shadow-glow transition-all duration-300 cursor-pointer bg-red-50"
+          onClick={activateSOS}
+        >
+          <CardContent className="p-3 md:p-4">
             <div className="flex items-center space-x-3">
-              <div className="w-10 h-10 bg-red-100 rounded-full flex items-center justify-center">
-                <Shield className="h-5 w-5 text-red-600" />
+              <div className="w-8 h-8 md:w-10 md:h-10 bg-red-100 rounded-full flex items-center justify-center flex-shrink-0">
+                <Shield className="h-4 w-4 md:h-5 md:w-5 text-red-600" />
               </div>
-              <div>
-                <h3 className="font-semibold">Emergency SOS</h3>
-                <p className="text-xs text-muted-foreground">Quick help</p>
+              <div className="min-w-0">
+                <h3 className="font-semibold text-sm md:text-base truncate text-red-700">Emergency SOS</h3>
+                <p className="text-xs text-red-600">Tap to activate</p>
               </div>
             </div>
           </CardContent>
@@ -710,24 +729,68 @@ const UserDashboard = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 bg-red-500/90 z-50 flex flex-col items-center justify-center"
+            className="fixed inset-0 bg-red-500/90 z-50 flex flex-col items-center justify-center p-4"
           >
-            <div className="text-white text-center space-y-4">
+            <div className="w-full max-w-md text-white text-center space-y-6">
               <AlertTriangle className="h-16 w-16 mx-auto animate-pulse" />
               <h2 className="text-3xl font-bold">SOS ACTIVATED</h2>
-              <p className="mb-4">Emergency contacts are being notified</p>
+              <p className="text-lg mb-4">Emergency services have been notified</p>
+              
+              <div className="grid grid-cols-2 gap-4 mb-6">
+                <Button
+                  variant="outline"
+                  className="bg-white text-red-500 hover:bg-red-50"
+                  onClick={() => {
+                    window.open(`https://www.google.com/maps/search/police+station+near+me`, '_blank');
+                  }}
+                >
+                  <Navigation2 className="h-4 w-4 mr-2" />
+                  Nearest Police
+                </Button>
+                <Button
+                  variant="outline"
+                  className="bg-white text-red-500 hover:bg-red-50"
+                  onClick={() => {
+                    window.open(`https://www.google.com/maps/search/hospital+near+me`, '_blank');
+                  }}
+                >
+                  <Hospital className="h-4 w-4 mr-2" />
+                  Nearest Hospital
+                </Button>
+                <Button
+                  variant="outline"
+                  className="bg-white text-red-500 hover:bg-red-50"
+                  onClick={() => {
+                    window.location.href = `tel:181`;
+                  }}
+                >
+                  <Phone className="h-4 w-4 mr-2" />
+                  Call 181
+                </Button>
+                <Button
+                  variant="outline"
+                  className="bg-white text-red-500 hover:bg-red-50"
+                  onClick={() => {
+                    window.location.href = `tel:112`;
+                  }}
+                >
+                  <Phone className="h-4 w-4 mr-2" />
+                  Call 112
+                </Button>
+              </div>
+
               <div className="space-y-2">
                 <Button
                   variant="outline"
                   onClick={() => setIsSOSActive(false)}
-                  className="w-full bg-white text-red-500"
+                  className="w-full bg-white text-red-500 hover:bg-red-50"
                 >
                   Hide Alert
                 </Button>
                 <Button
                   variant="outline"
                   onClick={deactivateSOS}
-                  className="w-full bg-white text-red-500"
+                  className="w-full bg-white text-red-500 hover:bg-red-50"
                 >
                   End Emergency
                 </Button>
