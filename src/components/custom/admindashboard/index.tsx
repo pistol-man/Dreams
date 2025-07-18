@@ -375,7 +375,7 @@ const UserDashboard = () => {
             </Avatar>
             
             <div className="flex-1">
-              <h2 className="text-2xl font-bold text-foreground">Priya Sharma</h2>
+              <h2 className="text-2xl font-bold text-foreground">ADMIN</h2>
               <p className="text-muted-foreground mb-2">priya.sharma@gmail.com</p>
               
               <div className="flex flex-wrap gap-2 mb-4">

@@ -1,92 +1,78 @@
-import { useEffect, useRef, useState } from 'react';
+import { useRef, useState, useEffect } from 'react';
 
 export const useCamera = () => {
-  const [isEnabled, setIsEnabled] = useState(false);
-  const [permissionStatus, setPermissionStatus] = useState<PermissionState>('prompt');
-  const [stream, setStream] = useState<MediaStream | null>(null);
-  const [error, setError] = useState<string | null>(null);
   const videoRef = useRef<HTMLVideoElement | null>(null);
+  const [error, setError] = useState<string | null>(null);
+  const [stream, setStream] = useState<MediaStream | null>(null);
+  const [isInitialized, setIsInitialized] = useState(false);
 
-  const checkPermission = async () => {
+  const enableCamera = async (): Promise<boolean> => {
     try {
-      const result = await navigator.permissions.query({ name: 'camera' as PermissionName });
-      setPermissionStatus(result.state);
-      return result.state;
-    } catch (error) {
-      // Some browsers don't support permission query for camera
-      return 'prompt';
-    }
-  };
-
-  const requestPermission = async () => {
-    try {
-      setError(null);
-      
-      // First check current permission status
-      const currentStatus = await checkPermission();
-      if (currentStatus === 'denied') {
-        setError('Camera permission was previously denied. Please enable it in your browser settings.');
-        return false;
-      }
-
-      // Request camera access
       const mediaStream = await navigator.mediaDevices.getUserMedia({ 
         video: { 
-          facingMode: 'environment', // Prefer back camera
+          facingMode: 'environment',
           width: { ideal: 1280 },
           height: { ideal: 720 }
-        } 
+        },
+        audio: false
       });
 
       setStream(mediaStream);
+      
       if (videoRef.current) {
         videoRef.current.srcObject = mediaStream;
+        await videoRef.current.play();
+        setIsInitialized(true);
       }
 
-      setPermissionStatus('granted');
+      setError(null);
       return true;
-    } catch (error) {
-      console.error('Error requesting camera permission:', error);
-      setError(
-        error instanceof DOMException && error.name === 'NotAllowedError'
-          ? 'Camera permission was denied. Please enable it to use the SOS feature.'
-          : 'Unable to access camera. Please make sure your device has a working camera.'
-      );
-      setPermissionStatus('denied');
+    } catch (err) {
+      const errorMessage = err instanceof Error ? err.message : 'Failed to access camera';
+      console.error('Camera initialization error:', err);
+      setError(errorMessage);
       return false;
     }
   };
 
-  const stopCamera = () => {
+  const disableCamera = () => {
     if (stream) {
-      stream.getTracks().forEach(track => track.stop());
+      stream.getTracks().forEach(track => {
+        track.stop();
+      });
       setStream(null);
     }
     if (videoRef.current) {
       videoRef.current.srcObject = null;
     }
-    setIsEnabled(false);
+    setIsInitialized(false);
+    setError(null);
   };
 
+  // Cleanup on unmount
   useEffect(() => {
-    // Check initial permission status
-    checkPermission();
-
     return () => {
-      stopCamera();
+      disableCamera();
     };
   }, []);
 
+  // Monitor video element and stream connection
+  useEffect(() => {
+    if (videoRef.current && stream && !isInitialized) {
+      videoRef.current.srcObject = stream;
+      videoRef.current.play().catch(err => {
+        console.error('Error playing video:', err);
+        setError('Failed to display camera feed');
+      });
+    }
+  }, [stream, isInitialized]);
+
   return {
     videoRef,
-    isEnabled,
-    permissionStatus,
     error,
-    enableCamera: async () => {
-      const hasPermission = await requestPermission();
-      setIsEnabled(hasPermission);
-      return hasPermission;
-    },
-    disableCamera: stopCamera,
+    enableCamera,
+    disableCamera,
+    stream,
+    isInitialized
   };
 }; 
