@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, Suspense } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
@@ -14,6 +14,9 @@ import {
 import { MapPin, Clock, Shield, AlertTriangle, Navigation2, Send } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { cn } from "@/lib/utils";
+
+// Lazy load the map component
+const WomenSafetyMap = React.lazy(() => import('../map/WomenSafetyMap'));
 
 interface RealTimeAlert {
   id: string;
@@ -79,7 +82,7 @@ const AdminDashboard = () => {
     setRealTimeAlerts(alerts =>
       alerts.map(alert =>
         alert.id === alertId
-          ? { ...alert, status: 'dispatched' }
+          ? { ...alert, status: 'dispatched' as const }
           : alert
       )
     );
@@ -157,8 +160,14 @@ const AdminDashboard = () => {
           </div>
         </CardHeader>
         <CardContent>
-          <div className="aspect-video rounded-xl bg-slate-100 dark:bg-slate-800 flex items-center justify-center">
-            <p className="text-muted-foreground">Interactive map integration coming soon...</p>
+          <div className="aspect-video rounded-xl overflow-hidden">
+            <Suspense fallback={
+              <div className="w-full h-full flex items-center justify-center bg-slate-100 dark:bg-slate-800">
+                <p className="text-muted-foreground">Loading map...</p>
+              </div>
+            }>
+              <WomenSafetyMap className="w-full h-full" />
+            </Suspense>
           </div>
         </CardContent>
       </Card>

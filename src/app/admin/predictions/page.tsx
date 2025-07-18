@@ -1,11 +1,7 @@
-import React from "react";
-import { AdminLayout } from "@/components/custom/layout/admin-layout";
+'use client';
+
 import AdminPredictions from "@/components/custom/adminpredictions";
 
-export default function AdminPredictionsPage() {
-  return (
-    <AdminLayout>
-      <AdminPredictions />
-    </AdminLayout>
-  );
+export default function PredictionsPage() {
+  return <AdminPredictions />;
 } 

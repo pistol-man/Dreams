@@ -1,0 +1,124 @@
+Date,Predicted_Call_Category,District,State,Predicted_Severity_Scale,Population_Density,Fire_Brigade_Vehicles,Ambulances,Police_Personnel,Paramedics,Doctors,Allocated_Fire_Brigade_Vehicles,Allocated_Ambulances,Allocated_Police_Personnel,Allocated_Paramedics,Allocated_Doctors,Special_Requirement,pincode,latitude,longitude
+2025-07-19,Counseling,Mumbai City,Maharashtra,7.45,15000,4,10,220,20,350,3,7,164,15,261,Veer Jeejamata Udyan zoo and garden,400027,18.979,72.8335
+2025-07-19,Counseling,Mumbai Suburban,Maharashtra,6.22,25000,8,20,400,40,650,5,12,249,25,404,Sahar international airport high security,400099,19.095,72.865
+2025-07-19,Emergency,Mumbai Suburban,Maharashtra,5.87,35000,5,14,300,28,520,3,8,176,16,305,Goregaon West residential,400062,19.167,72.849
+2025-07-19,Emergency,Mumbai Suburban,Maharashtra,8.14,40000,5,14,300,28,550,4,11,244,23,448,Mulund West dense residential,400080,19.17,72.945
+2025-07-19,Emergency,Mumbai Suburban,Maharashtra,7.39,40000,7,18,400,36,680,5,13,296,27,503,Santacruz airport residential colony,400029,19.0888,72.8687
+2025-07-19,Emergency,Mumbai City,Maharashtra,7.29,15000,4,10,220,20,350,3,7,160,15,255,Veer Jeejamata Udyan zoo and garden,400027,18.979,72.8335
+2025-07-19,Counseling,Mumbai Suburban,Maharashtra,7.18,41000,5,14,310,28,550,4,10,223,20,395,Dense residential Jogeshwari East,400060,19.1417,72.8631
+2025-07-19,Violence,Mumbai Suburban,Maharashtra,5.69,40000,5,14,310,28,560,3,8,176,16,319,Bangur Nagar Goregaon residential,400090,19.18,72.84
+2025-07-19,Harassment,Mumbai Suburban,Maharashtra,4.37,19000,4,10,240,20,390,2,4,105,9,170,Vidya Nagri university campus,400098,19.09,72.85
+2025-07-19,Exploitation,Mumbai Suburban,Maharashtra,4.5,40000,5,14,310,28,560,2,6,140,13,252,Bangur Nagar Goregaon residential,400090,19.18,72.84
+2025-07-19,Violence,Mumbai Suburban,Maharashtra,4.05,19000,4,10,240,20,390,2,4,97,8,158,Vidya Nagri university campus,400098,19.09,72.85
+2025-07-19,Emergency,Mumbai Suburban,Maharashtra,8.52,45000,6,16,340,32,640,5,14,290,27,545,Tilak Nagar high end residential Chembur,400089,19.058,72.9
+2025-07-19,Emergency,Mumbai City,Maharashtra,5.02,15000,4,10,220,20,350,2,5,110,10,176,Veer Jeejamata Udyan zoo and garden,400027,18.979,72.8335
+2025-07-19,Exploitation,Mumbai Suburban,Maharashtra,5.02,40000,5,14,300,28,550,3,7,151,14,276,Mulund West dense residential,400080,19.17,72.945
+2025-07-19,Counseling,Mumbai Suburban,Maharashtra,6.24,19000,4,10,240,20,390,2,6,150,12,243,Vidya Nagri university campus,400098,19.09,72.85
+2025-07-19,Exploitation,Mumbai City,Maharashtra,4.11,15000,4,10,220,20,350,2,4,90,8,144,Veer Jeejamata Udyan zoo and garden,400027,18.979,72.8335
+2025-07-19,Health,Mumbai Suburban,Maharashtra,5.75,45000,6,15,340,30,600,3,9,195,17,345,Shivaji Nagar Kurla dense area,400043,19.0664,72.8839
+2025-07-19,Counseling,Mumbai Suburban,Maharashtra,5.35,40000,5,14,310,28,560,3,7,166,15,300,Bangur Nagar Goregaon residential,400090,19.18,72.84
+2025-07-20,Counseling,Mumbai Suburban,Maharashtra,4.26,45000,6,15,340,30,600,3,6,145,13,256,Shivaji Nagar Kurla dense area,400043,19.0664,72.8839
+2025-07-20,Counseling,Mumbai Suburban,Maharashtra,3.57,53000,6,17,370,34,680,2,6,132,12,243,Ghatkopar West dense residential,400086,19.09,72.9
+2025-07-20,Exploitation,Mumbai Suburban,Maharashtra,5.14,40000,5,14,300,28,550,3,7,154,14,283,Mulund West dense residential,400080,19.17,72.945
+2025-07-20,Counseling,Mumbai Suburban,Maharashtra,4.76,40000,5,14,310,28,560,2,7,148,13,267,Bangur Nagar Goregaon residential,400090,19.18,72.84
+2025-07-20,Exploitation,Mumbai Suburban,Maharashtra,3.67,40000,5,14,310,28,560,2,5,114,10,206,Bangur Nagar Goregaon residential,400090,19.18,72.84
+2025-07-20,Counseling,Mumbai City,Maharashtra,6.54,15000,4,10,220,20,350,3,7,144,13,229,Veer Jeejamata Udyan zoo and garden,400027,18.979,72.8335
+2025-07-20,Harassment,Mumbai Suburban,Maharashtra,5.41,40000,5,14,310,28,560,3,8,168,15,303,Bangur Nagar Goregaon residential,400090,19.18,72.84
+2025-07-20,Counseling,Mumbai Suburban,Maharashtra,5.44,36000,8,18,380,36,680,4,10,207,20,370,Proximity to BARC and refineries Industrial Hazard,400071,19.055,72.91
+2025-07-20,Exploitation,Mumbai Suburban,Maharashtra,5.75,44000,6,16,350,32,630,3,9,201,18,362,Kurla dense residential and commercial,400070,19.07,72.885
+2025-07-20,Violence,Mumbai Suburban,Maharashtra,8.36,45000,6,16,340,32,640,5,13,284,27,535,Tilak Nagar high end residential Chembur,400089,19.058,72.9
+2025-07-20,Emergency,Mumbai Suburban,Maharashtra,7.5,40000,7,18,400,36,680,5,14,300,27,510,Santacruz airport residential colony,400029,19.0888,72.8687
+2025-07-20,Emergency,Mumbai Suburban,Maharashtra,8.77,40000,5,14,300,28,550,4,12,263,25,482,Mulund West dense residential,400080,19.17,72.945
+2025-07-20,Emergency,Mumbai Suburban,Maharashtra,6.26,40000,5,14,310,28,560,3,9,194,18,351,Bangur Nagar Goregaon residential,400090,19.18,72.84
+2025-07-20,Exploitation,Mumbai City,Maharashtra,3.84,15000,4,10,220,20,350,2,4,84,8,134,Veer Jeejamata Udyan zoo and garden,400027,18.979,72.8335
+2025-07-20,Exploitation,Mumbai City,Maharashtra,6.31,15000,4,10,220,20,350,3,6,139,13,221,Veer Jeejamata Udyan zoo and garden,400027,18.979,72.8335
+2025-07-20,Harassment,Mumbai Suburban,Maharashtra,4.35,19000,4,10,240,20,390,2,4,104,9,170,Vidya Nagri university campus,400098,19.09,72.85
+2025-07-20,Emergency,Mumbai City,Maharashtra,5.3,15000,4,10,220,20,350,2,5,117,11,186,Veer Jeejamata Udyan zoo and garden,400027,18.979,72.8335
+2025-07-20,Exploitation,Mumbai Suburban,Maharashtra,5.28,40000,5,14,310,28,560,3,7,164,15,296,Bangur Nagar Goregaon residential,400090,19.18,72.84
+2025-07-21,Harassment,Mumbai Suburban,Maharashtra,4.96,35000,5,14,300,28,520,2,7,149,14,258,Goregaon West residential,400062,19.167,72.849
+2025-07-21,Counseling,Mumbai City,Maharashtra,6.32,15000,4,10,220,20,350,3,6,139,13,221,Veer Jeejamata Udyan zoo and garden,400027,18.979,72.8335
+2025-07-21,Counseling,Mumbai Suburban,Maharashtra,7.08,41000,5,14,310,28,550,4,10,219,20,389,Dense residential Jogeshwari East,400060,19.1417,72.8631
+2025-07-21,Counseling,Mumbai Suburban,Maharashtra,3.16,44000,6,16,350,32,630,2,5,111,10,199,Kurla dense residential and commercial,400070,19.07,72.885
+2025-07-21,Counseling,Mumbai Suburban,Maharashtra,6.56,45000,6,15,340,30,600,4,10,223,20,394,Shivaji Nagar Kurla dense area,400043,19.0664,72.8839
+2025-07-21,Exploitation,Mumbai Suburban,Maharashtra,5.12,40000,5,14,310,28,560,3,7,159,14,287,Bangur Nagar Goregaon residential,400090,19.18,72.84
+2025-07-21,Violence,Mumbai Suburban,Maharashtra,7.25,41000,5,14,310,28,550,4,10,225,20,399,Dense residential Jogeshwari East,400060,19.1417,72.8631
+2025-07-21,Harassment,Mumbai Suburban,Maharashtra,4.19,19000,4,10,240,20,390,2,4,101,8,163,Vidya Nagri university campus,400098,19.09,72.85
+2025-07-21,Counseling,Mumbai City,Maharashtra,6.11,15000,4,10,220,20,350,2,6,134,12,214,Veer Jeejamata Udyan zoo and garden,400027,18.979,72.8335
+2025-07-21,Counseling,Mumbai Suburban,Maharashtra,4.92,44000,6,16,350,32,630,3,8,172,16,310,Kurla dense residential and commercial,400070,19.07,72.885
+2025-07-21,Emergency,Mumbai Suburban,Maharashtra,5.32,35000,5,14,300,28,520,3,7,160,15,277,Goregaon West residential,400062,19.167,72.849
+2025-07-21,Counseling,Mumbai Suburban,Maharashtra,5.15,19000,4,10,240,20,390,2,5,124,10,201,Vidya Nagri university campus,400098,19.09,72.85
+2025-07-21,Counseling,Mumbai Suburban,Maharashtra,6.46,40000,5,14,300,28,550,3,9,194,18,355,Mulund West dense residential,400080,19.17,72.945
+2025-07-21,Exploitation,Mumbai Suburban,Maharashtra,5.35,44000,6,16,350,32,630,3,9,187,17,337,Kurla dense residential and commercial,400070,19.07,72.885
+2025-07-21,Emergency,Mumbai Suburban,Maharashtra,7.33,44000,6,16,350,32,630,4,12,257,23,462,Kurla dense residential and commercial,400070,19.07,72.885
+2025-07-21,Emergency,Mumbai Suburban,Maharashtra,6.74,46000,6,16,340,32,620,4,11,229,22,418,Borivali East dense residential,400066,19.229,72.86
+2025-07-21,Counseling,Mumbai Suburban,Maharashtra,4.97,32000,5,13,290,26,500,2,6,144,13,248,Versova coastal area,400061,19.125,72.819
+2025-07-21,Exploitation,Mumbai Suburban,Maharashtra,4.98,40000,5,14,300,28,550,2,7,149,14,274,Mulund West dense residential,400080,19.17,72.945
+2025-07-22,Harassment,Mumbai Suburban,Maharashtra,3.85,19000,4,10,240,20,390,2,4,92,8,150,Vidya Nagri university campus,400098,19.09,72.85
+2025-07-22,Counseling,Mumbai Suburban,Maharashtra,7.27,40000,5,14,310,28,560,4,10,225,20,407,Bangur Nagar Goregaon residential,400090,19.18,72.84
+2025-07-22,Counseling,Mumbai Suburban,Maharashtra,3.49,44000,6,16,350,32,630,2,6,122,11,220,Kurla dense residential and commercial,400070,19.07,72.885
+2025-07-22,Counseling,Mumbai Suburban,Maharashtra,5.15,40000,5,14,300,28,550,3,7,154,14,283,Mulund West dense residential,400080,19.17,72.945
+2025-07-22,Exploitation,Mumbai Suburban,Maharashtra,4.97,36000,8,18,380,36,680,4,9,189,18,338,Proximity to BARC and refineries Industrial Hazard,400071,19.055,72.91
+2025-07-22,Counseling,Mumbai City,Maharashtra,7.43,15000,4,10,220,20,350,3,7,163,15,260,Veer Jeejamata Udyan zoo and garden,400027,18.979,72.8335
+2025-07-22,Violence,Mumbai Suburban,Maharashtra,8.52,40000,5,14,310,28,560,4,12,264,24,477,Bangur Nagar Goregaon residential,400090,19.18,72.84
+2025-07-22,Emergency,Mumbai Suburban,Maharashtra,6.16,35000,5,14,300,28,520,3,9,185,17,320,Goregaon West residential,400062,19.167,72.849
+2025-07-22,Emergency,Mumbai Suburban,Maharashtra,6.58,40000,6,16,340,32,600,4,11,224,21,395,Rajawadi hospital area Ghatkopar,400077,19.075,72.9
+2025-07-22,Counseling,Mumbai City,Maharashtra,4.7,15000,4,10,220,20,350,2,5,103,9,164,Veer Jeejamata Udyan zoo and garden,400027,18.979,72.8335
+2025-07-22,Health,Mumbai Suburban,Maharashtra,3.92,40000,7,18,400,36,680,3,7,157,14,267,Santacruz airport residential colony,400029,19.0888,72.8687
+2025-07-22,Counseling,Mumbai Suburban,Maharashtra,5.74,40000,5,14,300,28,550,3,8,172,16,316,Mulund West dense residential,400080,19.17,72.945
+2025-07-22,Harassment,Mumbai Suburban,Maharashtra,4.93,40000,5,14,310,28,560,2,7,153,14,276,Bangur Nagar Goregaon residential,400090,19.18,72.84
+2025-07-22,Counseling,Mumbai Suburban,Maharashtra,4.86,44000,6,16,350,32,630,3,8,170,16,306,Kurla dense residential and commercial,400070,19.07,72.885
+2025-07-22,Counseling,Mumbai Suburban,Maharashtra,7.16,48000,6,16,350,32,620,4,11,251,23,444,Bhandup East residential area,400042,19.1026,72.9367
+2025-07-22,Counseling,Mumbai City,Maharashtra,5.05,55000,6,15,380,30,750,3,8,192,15,379,Dense wholesale market area,400002,18.9502,72.8295
+2025-07-22,Counseling,Mumbai Suburban,Maharashtra,6.47,48000,6,16,350,32,620,4,10,226,21,401,Bhandup East residential area,400042,19.1026,72.9367
+2025-07-22,Counseling,Mumbai Suburban,Maharashtra,3.9,32000,5,13,290,26,500,2,5,113,10,195,Versova coastal area,400061,19.125,72.819
+2025-07-23,Exploitation,Mumbai Suburban,Maharashtra,6.31,44000,6,16,350,32,630,4,10,221,20,398,Kurla dense residential and commercial,400070,19.07,72.885
+2025-07-23,Harassment,Mumbai Suburban,Maharashtra,4.82,19000,4,10,240,20,390,2,5,116,10,188,Vidya Nagri university campus,400098,19.09,72.85
+2025-07-23,Counseling,Mumbai Suburban,Maharashtra,4.82,44000,6,16,350,32,630,3,8,169,15,304,Kurla dense residential and commercial,400070,19.07,72.885
+2025-07-23,Emergency,Mumbai Suburban,Maharashtra,7.36,45000,6,15,340,30,600,4,11,250,22,442,Shivaji Nagar Kurla dense area,400043,19.0664,72.8839
+2025-07-23,Harassment,Mumbai Suburban,Maharashtra,5.32,45000,6,16,340,32,640,3,9,181,17,340,Tilak Nagar high end residential Chembur,400089,19.058,72.9
+2025-07-23,Counseling,Mumbai Suburban,Maharashtra,5.96,53000,6,17,370,34,680,4,10,221,20,405,Ghatkopar West dense residential,400086,19.09,72.9
+2025-07-23,Exploitation,Mumbai Suburban,Maharashtra,5.3,40000,5,14,310,28,560,3,7,164,15,297,Bangur Nagar Goregaon residential,400090,19.18,72.84
+2025-07-23,Exploitation,Mumbai Suburban,Maharashtra,4.36,36000,8,18,380,36,680,3,8,166,16,296,Proximity to BARC and refineries Industrial Hazard,400071,19.055,72.91
+2025-07-23,Counseling,Mumbai City,Maharashtra,6.48,15000,4,10,220,20,350,3,6,143,13,227,Veer Jeejamata Udyan zoo and garden,400027,18.979,72.8335
+2025-07-23,Counseling,Mumbai Suburban,Maharashtra,3.21,53000,6,17,370,34,680,2,5,119,11,218,Ghatkopar West dense residential,400086,19.09,72.9
+2025-07-23,Counseling,Mumbai City,Maharashtra,6.83,15000,4,10,220,20,350,3,7,150,14,239,Veer Jeejamata Udyan zoo and garden,400027,18.979,72.8335
+2025-07-23,Emergency,Mumbai City,Maharashtra,7.54,15000,4,10,220,20,350,3,8,166,15,264,Veer Jeejamata Udyan zoo and garden,400027,18.979,72.8335
+2025-07-23,Counseling,Mumbai City,Maharashtra,4.46,15000,4,10,220,20,350,2,4,98,9,156,Veer Jeejamata Udyan zoo and garden,400027,18.979,72.8335
+2025-07-23,Counseling,Mumbai Suburban,Maharashtra,7.02,32000,5,13,290,26,500,4,9,204,18,351,Versova coastal area,400061,19.125,72.819
+2025-07-23,Counseling,Mumbai Suburban,Maharashtra,4.38,44000,6,16,350,32,630,3,7,153,14,276,Kurla dense residential and commercial,400070,19.07,72.885
+2025-07-23,Counseling,Mumbai Suburban,Maharashtra,4.69,48000,6,16,350,32,620,3,8,164,15,291,Bhandup East residential area,400042,19.1026,72.9367
+2025-07-23,Violence,Mumbai Suburban,Maharashtra,8.34,40000,5,14,310,28,560,4,12,259,23,467,Bangur Nagar Goregaon residential,400090,19.18,72.84
+2025-07-24,Emergency,Mumbai Suburban,Maharashtra,8.5,40000,5,14,300,28,550,4,12,255,24,468,Mulund West dense residential,400080,19.17,72.945
+2025-07-24,Counseling,Mumbai Suburban,Maharashtra,4.43,44000,6,16,350,32,630,3,7,155,14,279,Kurla dense residential and commercial,400070,19.07,72.885
+2025-07-24,Counseling,Mumbai Suburban,Maharashtra,3.28,36000,8,18,380,36,680,3,6,125,12,223,Proximity to BARC and refineries Industrial Hazard,400071,19.055,72.91
+2025-07-24,Harassment,Mumbai Suburban,Maharashtra,4.68,19000,4,10,240,20,390,2,5,112,9,183,Vidya Nagri university campus,400098,19.09,72.85
+2025-07-24,Health,Mumbai Suburban,Maharashtra,3.81,44000,6,16,350,32,630,2,6,133,12,240,Kurla dense residential and commercial,400070,19.07,72.885
+2025-07-24,Counseling,Mumbai Suburban,Maharashtra,4.47,44000,6,16,350,32,630,3,7,156,14,282,Kurla dense residential and commercial,400070,19.07,72.885
+2025-07-24,Exploitation,Mumbai Suburban,Maharashtra,5.27,36000,8,18,380,36,680,4,9,200,19,358,Proximity to BARC and refineries Industrial Hazard,400071,19.055,72.91
+2025-07-24,Harassment,Mumbai Suburban,Maharashtra,5.32,35000,5,14,300,28,520,3,7,160,15,277,Goregaon West residential,400062,19.167,72.849
+2025-07-24,Exploitation,Mumbai Suburban,Maharashtra,4.74,40000,5,14,310,28,560,2,7,147,13,265,Bangur Nagar Goregaon residential,400090,19.18,72.84
+2025-07-24,Emergency,Mumbai City,Maharashtra,5.43,15000,4,10,220,20,350,2,5,119,11,190,Veer Jeejamata Udyan zoo and garden,400027,18.979,72.8335
+2025-07-24,Exploitation,Mumbai Suburban,Maharashtra,5.65,32000,5,13,290,26,500,3,7,164,15,283,Versova coastal area,400061,19.125,72.819
+2025-07-24,Counseling,Mumbai City,Maharashtra,6.18,15000,4,10,220,20,350,2,6,136,12,216,Veer Jeejamata Udyan zoo and garden,400027,18.979,72.8335
+2025-07-24,Counseling,Mumbai City,Maharashtra,7.43,15000,4,10,220,20,350,3,7,163,15,260,Veer Jeejamata Udyan zoo and garden,400027,18.979,72.8335
+2025-07-24,Counseling,Mumbai Suburban,Maharashtra,4.61,44000,6,16,350,32,630,3,7,161,15,290,Kurla dense residential and commercial,400070,19.07,72.885
+2025-07-24,Counseling,Mumbai Suburban,Maharashtra,7.74,41000,5,14,310,28,550,4,11,240,22,426,Dense residential Jogeshwari East,400060,19.1417,72.8631
+2025-07-24,Exploitation,Mumbai Suburban,Maharashtra,4.77,36000,8,18,380,36,680,4,9,181,17,324,Proximity to BARC and refineries Industrial Hazard,400071,19.055,72.91
+2025-07-24,Counseling,Mumbai City,Maharashtra,6.76,15000,4,10,220,20,350,3,7,149,14,237,Veer Jeejamata Udyan zoo and garden,400027,18.979,72.8335
+2025-07-25,Exploitation,Mumbai Suburban,Maharashtra,5.25,40000,5,14,310,28,560,3,7,163,15,294,Bangur Nagar Goregaon residential,400090,19.18,72.84
+2025-07-25,Counseling,Mumbai City,Maharashtra,6.59,15000,4,10,220,20,350,3,7,145,13,231,Veer Jeejamata Udyan zoo and garden,400027,18.979,72.8335
+2025-07-25,Counseling,Mumbai Suburban,Maharashtra,4.62,44000,6,16,350,32,630,3,7,162,15,291,Kurla dense residential and commercial,400070,19.07,72.885
+2025-07-25,Exploitation,Mumbai City,Maharashtra,6.66,15000,4,10,220,20,350,3,7,147,13,233,Veer Jeejamata Udyan zoo and garden,400027,18.979,72.8335
+2025-07-25,Counseling,Mumbai City,Maharashtra,3.19,15000,4,10,220,20,350,1,3,70,6,112,Veer Jeejamata Udyan zoo and garden,400027,18.979,72.8335
+2025-07-25,Counseling,Mumbai Suburban,Maharashtra,5.63,32000,5,13,290,26,500,3,7,163,15,282,Versova coastal area,400061,19.125,72.819
+2025-07-25,Emergency,Mumbai Suburban,Maharashtra,6.09,19000,4,10,240,20,390,2,6,146,12,238,Vidya Nagri university campus,400098,19.09,72.85
+2025-07-25,Violence,Mumbai Suburban,Maharashtra,8.66,40000,5,14,310,28,560,4,12,268,24,485,Bangur Nagar Goregaon residential,400090,19.18,72.84
+2025-07-25,Exploitation,Mumbai Suburban,Maharashtra,7.11,44000,6,16,350,32,630,4,11,249,23,448,Kurla dense residential and commercial,400070,19.07,72.885
+2025-07-25,Counseling,Mumbai Suburban,Maharashtra,5.99,36000,8,18,380,36,680,5,11,228,22,407,Proximity to BARC and refineries Industrial Hazard,400071,19.055,72.91
+2025-07-25,Emergency,Mumbai Suburban,Maharashtra,7.99,35000,5,14,300,28,520,4,11,240,22,415,Goregaon West residential,400062,19.167,72.849
+2025-07-25,Counseling,Mumbai Suburban,Maharashtra,3.34,53000,6,17,370,34,680,2,6,124,11,227,Ghatkopar West dense residential,400086,19.09,72.9
+2025-07-25,Counseling,Mumbai Suburban,Maharashtra,4.96,44000,6,16,350,32,630,3,8,174,16,312,Kurla dense residential and commercial,400070,19.07,72.885
+2025-07-25,Counseling,Mumbai Suburban,Maharashtra,3.03,40000,5,14,310,28,560,2,4,94,8,170,Bangur Nagar Goregaon residential,400090,19.18,72.84
+2025-07-25,Harassment,Mumbai Suburban,Maharashtra,3.76,38000,5,13,290,26,520,2,5,109,10,196,Mulund East residential,400081,19.175,72.955
+2025-07-25,Exploitation,Mumbai City,Maharashtra,5.21,59000,6,16,360,32,650,3,8,188,17,339,Wadala dense residential area,400031,19.0205,72.8572
+2025-07-25,Harassment,Mumbai Suburban,Maharashtra,5.55,40000,5,14,310,28,560,3,8,172,16,311,Bangur Nagar Goregaon residential,400090,19.18,72.84

@@ -1,0 +1,19 @@
+Date,Predicted_Call_Category,District,State,Predicted_Severity_Scale,Population_Density,Fire_Brigade_Vehicles,Ambulances,Police_Personnel,Paramedics,Doctors,Allocated_Fire_Brigade_Vehicles,Allocated_Ambulances,Allocated_Police_Personnel,Allocated_Paramedics,Allocated_Doctors,Special_Requirement,pincode,latitude,longitude
+2025-07-19,Counseling,Mumbai City,Maharashtra,7.45,15000,4,10,220,20,350,3,7,164,15,261,Veer Jeejamata Udyan zoo and garden,400027,18.979,72.8335
+2025-07-19,Counseling,Mumbai Suburban,Maharashtra,6.22,25000,8,20,400,40,650,5,12,249,25,404,Sahar international airport high security,400099,19.095,72.865
+2025-07-19,Emergency,Mumbai Suburban,Maharashtra,5.87,35000,5,14,300,28,520,3,8,176,16,305,Goregaon West residential,400062,19.167,72.849
+2025-07-19,Emergency,Mumbai Suburban,Maharashtra,8.14,40000,5,14,300,28,550,4,11,244,23,448,Mulund West dense residential,400080,19.17,72.945
+2025-07-19,Emergency,Mumbai Suburban,Maharashtra,7.39,40000,7,18,400,36,680,5,13,296,27,503,Santacruz airport residential colony,400029,19.0888,72.8687
+2025-07-19,Emergency,Mumbai City,Maharashtra,7.29,15000,4,10,220,20,350,3,7,160,15,255,Veer Jeejamata Udyan zoo and garden,400027,18.979,72.8335
+2025-07-19,Counseling,Mumbai Suburban,Maharashtra,7.18,41000,5,14,310,28,550,4,10,223,20,395,Dense residential Jogeshwari East,400060,19.1417,72.8631
+2025-07-19,Violence,Mumbai Suburban,Maharashtra,5.69,40000,5,14,310,28,560,3,8,176,16,319,Bangur Nagar Goregaon residential,400090,19.18,72.84
+2025-07-19,Harassment,Mumbai Suburban,Maharashtra,4.37,19000,4,10,240,20,390,2,4,105,9,170,Vidya Nagri university campus,400098,19.09,72.85
+2025-07-19,Exploitation,Mumbai Suburban,Maharashtra,4.5,40000,5,14,310,28,560,2,6,140,13,252,Bangur Nagar Goregaon residential,400090,19.18,72.84
+2025-07-19,Violence,Mumbai Suburban,Maharashtra,4.05,19000,4,10,240,20,390,2,4,97,8,158,Vidya Nagri university campus,400098,19.09,72.85
+2025-07-19,Emergency,Mumbai Suburban,Maharashtra,8.52,45000,6,16,340,32,640,5,14,290,27,545,Tilak Nagar high end residential Chembur,400089,19.058,72.9
+2025-07-19,Emergency,Mumbai City,Maharashtra,5.02,15000,4,10,220,20,350,2,5,110,10,176,Veer Jeejamata Udyan zoo and garden,400027,18.979,72.8335
+2025-07-19,Exploitation,Mumbai Suburban,Maharashtra,5.02,40000,5,14,300,28,550,3,7,151,14,276,Mulund West dense residential,400080,19.17,72.945
+2025-07-19,Counseling,Mumbai Suburban,Maharashtra,6.24,19000,4,10,240,20,390,2,6,150,12,243,Vidya Nagri university campus,400098,19.09,72.85
+2025-07-19,Exploitation,Mumbai City,Maharashtra,4.11,15000,4,10,220,20,350,2,4,90,8,144,Veer Jeejamata Udyan zoo and garden,400027,18.979,72.8335
+2025-07-19,Health,Mumbai Suburban,Maharashtra,5.75,45000,6,15,340,30,600,3,9,195,17,345,Shivaji Nagar Kurla dense area,400043,19.0664,72.8839
+2025-07-19,Counseling,Mumbai Suburban,Maharashtra,5.35,40000,5,14,310,28,560,3,7,166,15,300,Bangur Nagar Goregaon residential,400090,19.18,72.84 
