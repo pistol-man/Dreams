@@ -11,6 +11,7 @@ import UserInfoPage from "./app/user/info/page";
 import LoginPage from "./app/login/page";
 import AdminPage from "./app/admin/page";
 import ContactPage from "./app/contact/page";
+import CommunityPage from "./app/community/page";
 
 const queryClient = new QueryClient();
 
@@ -25,6 +26,7 @@ const App = () => (
           <Route path="/user" element={<UserPage />} />
           <Route path="/user/map" element={<UserMapPage />} />
           <Route path="/user/info" element={<UserInfoPage />} />
+          <Route path="/user/community" element={<CommunityPage />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/admin" element={<AdminPage />} />
           <Route path="/contact" element={<ContactPage />} />
