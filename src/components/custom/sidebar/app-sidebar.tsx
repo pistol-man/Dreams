@@ -12,7 +12,7 @@ import {
   SidebarHeader,
   useSidebar,
 } from "@/components/ui/sidebar";
-import { Home, Map, Shield, Users, MessageCircle, Settings } from "lucide-react";
+import { Home, Map, Shield, Users, Settings, Info } from "lucide-react";
 
 const menuItems = [
   {
@@ -31,9 +31,9 @@ const menuItems = [
     icon: Shield,
   },
   {
-    title: "Alerts",
-    url: "/user/alerts",
-    icon: MessageCircle,
+    title: "Info",
+    url: "/user/info",
+    icon: Info,
   },
   {
     title: "Community",
