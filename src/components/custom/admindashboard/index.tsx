@@ -152,7 +152,7 @@ const AdminDashboard = () => {
       <Card className="shadow-soft rounded-2xl border-0">
         <CardHeader>
           <div className="flex items-center justify-between">
-            <CardTitle className="text-xl font-bold">Emergency Response Map</CardTitle>
+            <CardTitle className="text-xl font-bold">Real Time Emergency Response Map</CardTitle>
             <Badge variant="secondary" className="bg-blue-100 text-blue-700">
               <Navigation2 className="w-4 h-4 mr-2" />
               Live View

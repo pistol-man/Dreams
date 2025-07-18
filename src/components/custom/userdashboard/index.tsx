@@ -23,6 +23,7 @@ import {
 import { useShake } from "@/hooks/use-shake";
 import { useCamera } from "@/hooks/use-camera";
 import { cn } from "@/lib/utils";
+import { EmergencyAlarm } from "@/lib/utils";
 
 interface TrustedContact {
   id: string;
@@ -158,6 +159,9 @@ const UserDashboard = () => {
   const activateSOS = async () => {
     setIsSOSActive(true);
 
+    // Start the alarm sound
+    EmergencyAlarm.start();
+
     // Request camera access
     toast({
       title: "Activating Camera",
@@ -223,6 +227,8 @@ const UserDashboard = () => {
     setIsSOSActive(false);
     setShowCamera(false);
     disableCamera();
+    // Stop the alarm sound
+    EmergencyAlarm.stop();
     toast({
       title: "SOS Deactivated",
       description: "Emergency mode has been turned off",
@@ -232,12 +238,22 @@ const UserDashboard = () => {
   // Handle Safe Mode toggle
   const handleSafeModeToggle = async (checked: boolean) => {
     if (checked) {
+      if (!isMobile) {
+        toast({
+          title: "Not Available",
+          description: "Safe Mode is only available on mobile devices",
+          variant: "destructive",
+        });
+        return;
+      }
+
       // Show initial toast with device-specific message
       toast({
         title: "Requesting Permissions",
         description: isIOS 
-          ? "Please allow motion sensor access in the popup"
-          : "Please allow motion sensor access when prompted",
+          ? "Please allow sensor access in the popup"
+          : "Please ensure motion sensors are enabled",
+        duration: 5000,
       });
 
       try {
@@ -248,35 +264,81 @@ const UserDashboard = () => {
           setIsSafeModeEnabled(true);
           toast({
             title: "Safe Mode Activated",
-            description: "Shake phone twice quickly to activate SOS",
+            description: "Shake phone twice quickly to trigger SOS",
+            duration: 5000,
           });
+
+          // Add visual feedback for shake detection
+          const existingBadge = document.getElementById('shake-alert');
+          if (!existingBadge) {
+            const alertBadge = document.createElement('div');
+            alertBadge.id = 'shake-alert';
+            alertBadge.style.cssText = `
+              position: fixed;
+              top: 20px;
+              left: 50%;
+              transform: translateX(-50%);
+              background: rgba(220, 38, 38, 0.9);
+              color: white;
+              padding: 12px 24px;
+              border-radius: 50px;
+              font-size: 14px;
+              font-weight: 500;
+              z-index: 1000;
+              display: none;
+              transition: all 0.3s ease;
+              opacity: 0;
+              box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            `;
+            alertBadge.textContent = 'First Shake Detected! Shake Again for SOS';
+            document.body.appendChild(alertBadge);
+          }
         } else {
           setIsSafeModeEnabled(false);
           if (isIOS) {
             toast({
               title: "Permission Required",
-              description: "Please enable motion sensors in iOS Settings > Safari > Motion & Orientation Access",
+              description: "Please enable motion & orientation access in iOS Settings > Safari",
               variant: "destructive",
+              duration: 7000,
             });
           } else {
+            const errorMsg = shakeError || "Please check your device's motion sensor settings";
             toast({
-              title: "Permission Required",
-              description: shakeError || "Motion sensor access is required for Safe Mode",
+              title: "Sensor Access Required",
+              description: errorMsg,
               variant: "destructive",
+              duration: 7000,
             });
           }
         }
       } catch (error) {
         setIsSafeModeEnabled(false);
+        const errorMessage = error instanceof Error ? error.message : "Failed to enable Safe Mode";
+        
+        // Show a more detailed error message with instructions
         toast({
-          title: "Error",
-          description: "Failed to enable Safe Mode. Please try again.",
+          title: "Sensor Access Error",
+          description: `${errorMessage}. Please ensure:
+            ${isIOS 
+              ? "1. You're using Safari browser\n2. Motion & Orientation Access is enabled in Safari settings" 
+              : "1. Motion sensors are enabled in device settings\n2. The website has permission to access sensors"}`,
           variant: "destructive",
+          duration: 10000,
         });
       }
     } else {
       setIsSafeModeEnabled(false);
       disableShake();
+      
+      // Remove visual feedback element with animation
+      const alertBadge = document.getElementById('shake-alert');
+      if (alertBadge) {
+        alertBadge.style.opacity = '0';
+        alertBadge.style.transform = 'translate(-50%, -20px)';
+        setTimeout(() => alertBadge.remove(), 300);
+      }
+
       toast({
         title: "Safe Mode Deactivated",
         description: "SOS shake detection is now disabled",
@@ -289,8 +351,12 @@ const UserDashboard = () => {
     return () => {
       disableShake();
       disableCamera();
+      const alertBadge = document.getElementById('shake-alert');
+      if (alertBadge) {
+        alertBadge.remove();
+      }
     };
-  }, []);
+  }, [disableShake, disableCamera]);
 
   const handleImageUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];

@@ -1,145 +1,254 @@
-import { useEffect, useState, useCallback } from 'react';
-import { useDevice } from './use-device';
+import { useState, useEffect, useCallback } from 'react';
 
 interface ShakeOptions {
   threshold?: number;
   timeout?: number;
-  onShake: () => void;
+  onShake?: () => void;
 }
 
+interface UseShakeReturn {
+  enableShake: () => Promise<boolean>;
+  disableShake: () => void;
+  isEnabled: boolean;
+  permissionStatus: PermissionState | null;
+  error: string | null;
+  isIOS: boolean;
+  isMobile: boolean;
+}
+
+// Add type declarations for sensor permissions
 declare global {
   interface Window {
     DeviceMotionEvent: {
-      requestPermission?: () => Promise<'granted' | 'denied' | 'default'>;
-      new(type: string, eventInitDict?: DeviceMotionEventInit): DeviceMotionEvent;
+      requestPermission?: () => Promise<PermissionState>;
+    } & typeof DeviceMotionEvent;
+    DeviceOrientationEvent: {
+      requestPermission?: () => Promise<PermissionState>;
+    } & typeof DeviceOrientationEvent;
+  }
+  interface Navigator {
+    permissions?: {
+      query: (descriptor: { name: string }) => Promise<PermissionStatus>;
     };
   }
 }
 
-export const useShake = ({ threshold = 15, timeout = 1000, onShake }: ShakeOptions) => {
-  const { isIOS, isMobile } = useDevice();
+export function useShake({
+  threshold = 15,
+  timeout = 1000,
+  onShake
+}: ShakeOptions = {}): UseShakeReturn {
   const [isEnabled, setIsEnabled] = useState(false);
-  const [permissionStatus, setPermissionStatus] = useState<PermissionState>('prompt');
+  const [permissionStatus, setPermissionStatus] = useState<PermissionState | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const [lastShakeTime, setLastShakeTime] = useState(0);
+  const [shakeCount, setShakeCount] = useState(0);
+  const [lastShakeTimeout, setLastShakeTimeout] = useState<NodeJS.Timeout | null>(null);
 
-  const requestIOSPermission = useCallback(async (): Promise<boolean> => {
+  // Detect platform
+  const isIOS = typeof window !== 'undefined' && /iPad|iPhone|iPod/.test(navigator.userAgent);
+  const isMobile = typeof window !== 'undefined' && /Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+
+  // Request sensor permissions based on platform
+  const requestSensorPermissions = async (): Promise<boolean> => {
     try {
-      if (typeof window.DeviceMotionEvent.requestPermission === 'function') {
-        const permission = await window.DeviceMotionEvent.requestPermission();
-        setPermissionStatus(permission);
-        setError(null);
-        return permission === 'granted';
-      }
-      return true;
-    } catch (err) {
-      console.error('Error requesting iOS motion permission:', err);
-      setError('Failed to get motion sensor permission. Please enable it in your device settings.');
-      return false;
-    }
-  }, []);
-
-  const requestAndroidPermission = useCallback(async (): Promise<boolean> => {
-    try {
-      // Create a temporary event listener to trigger permission prompt
-      const tempListener = () => {};
-      window.addEventListener('devicemotion', tempListener, { once: true });
-      window.removeEventListener('devicemotion', tempListener);
-      
-      setPermissionStatus('granted');
-      setError(null);
-      return true;
-    } catch (err) {
-      console.error('Error accessing motion sensors:', err);
-      setError('Failed to access motion sensors. Please ensure they are enabled on your device.');
-      return false;
-    }
-  }, []);
-
-  const requestPermission = useCallback(async () => {
-    setError(null);
-
-    // First check if we're on a mobile device
-    if (!isMobile) {
-      setError('Shake detection is only available on mobile devices.');
-      return false;
-    }
-
-    // Check if device motion is available
-    if (typeof window.DeviceMotionEvent === 'undefined') {
-      setError('Motion sensors are not available on this device.');
-      return false;
-    }
-
-    try {
-      // Handle iOS permission
       if (isIOS) {
-        return await requestIOSPermission();
-      }
-      
-      // Handle Android permission
-      return await requestAndroidPermission();
+        // iOS requires explicit permission requests
+        if (window.DeviceMotionEvent?.requestPermission && window.DeviceOrientationEvent?.requestPermission) {
+          // Request both motion and orientation permissions
+          const motionPermission = await window.DeviceMotionEvent.requestPermission();
+          const orientationPermission = await window.DeviceOrientationEvent.requestPermission();
 
-    } catch (error) {
-      console.error('Error requesting motion permission:', error);
-      setError('Failed to access motion sensors. Please try again.');
-      setPermissionStatus('denied');
-      return false;
-    }
-  }, [isIOS, isMobile, requestIOSPermission, requestAndroidPermission]);
+          const permissionsGranted = motionPermission === 'granted' && orientationPermission === 'granted';
+          setPermissionStatus(permissionsGranted ? 'granted' : 'denied');
+          
+          if (!permissionsGranted) {
+            throw new Error(
+              'Sensor access denied. Please enable motion and orientation sensors in iOS Settings > Safari > Motion & Orientation Access'
+            );
+          }
+          return true;
+        }
+      } else {
+        // Android and other platforms
+        if (navigator.permissions) {
+          // Check for accelerometer permission
+          const accelerometer = await navigator.permissions.query({ name: 'accelerometer' as any });
+          const gyroscope = await navigator.permissions.query({ name: 'gyroscope' as any });
+          
+          const permissionsGranted = 
+            accelerometer.state === 'granted' && 
+            gyroscope.state === 'granted';
 
-  useEffect(() => {
-    if (!isEnabled) return;
+          setPermissionStatus(permissionsGranted ? 'granted' : 'denied');
 
-    let lastShake = 0;
-    let shakeCount = 0;
-
-    const handleShake = (event: DeviceMotionEvent) => {
-      if (!event.accelerationIncludingGravity) return;
-
-      const { x, y, z } = event.accelerationIncludingGravity;
-      const acceleration = Math.sqrt((x || 0) ** 2 + (y || 0) ** 2 + (z || 0) ** 2);
-      const now = Date.now();
-
-      if (acceleration > threshold) {
-        if (now - lastShake < timeout) return;
-        
-        shakeCount++;
-        lastShake = now;
-
-        console.log('Shake detected:', shakeCount); // Debug log
-
-        if (shakeCount === 2) {
-          onShake();
-          shakeCount = 0;
+          if (!permissionsGranted) {
+            throw new Error(
+              'Sensor access denied. Please enable motion sensors in your device settings'
+            );
+          }
+          return true;
         }
 
-        // Reset shake count after 2 seconds of no shakes
-        setTimeout(() => {
-          if (now - lastShake >= 2000) {
-            shakeCount = 0;
+        // Fallback for browsers without Permissions API
+        // Try to access sensors directly
+        return new Promise((resolve) => {
+          let sensorAccessed = false;
+          
+          const testMotion = (e: DeviceMotionEvent) => {
+            if (e.acceleration || e.accelerationIncludingGravity) {
+              sensorAccessed = true;
+              window.removeEventListener('devicemotion', testMotion);
+              resolve(true);
+            }
+          };
+
+          window.addEventListener('devicemotion', testMotion, { once: true });
+
+          // Set a timeout to check if we received any sensor data
+          setTimeout(() => {
+            window.removeEventListener('devicemotion', testMotion);
+            if (!sensorAccessed) {
+              setError('No sensor data received. Please ensure motion sensors are enabled in your device settings');
+              resolve(false);
+            }
+          }, 1000);
+        });
+      }
+
+      return true;
+    } catch (error) {
+      const errorMessage = error instanceof Error ? error.message : 'Failed to access motion sensors';
+      setError(errorMessage);
+      return false;
+    }
+  };
+
+  // Reset shake count after a delay
+  const resetShakeCount = useCallback(() => {
+    if (lastShakeTimeout) {
+      clearTimeout(lastShakeTimeout);
+    }
+    const timeout = setTimeout(() => {
+      setShakeCount(0);
+    }, 2000);
+    setLastShakeTimeout(timeout);
+  }, []);
+
+  // Handle device motion
+  const handleMotion = useCallback((event: DeviceMotionEvent) => {
+    if (!isEnabled) return;
+
+    // Get acceleration with gravity if acceleration is not available
+    const acceleration = event.acceleration || event.accelerationIncludingGravity;
+    if (!acceleration) return;
+
+    const now = Date.now();
+    const timeDiff = now - lastShakeTime;
+
+    // Calculate total acceleration
+    const totalAcceleration = Math.sqrt(
+      Math.pow(acceleration.x || 0, 2) +
+      Math.pow(acceleration.y || 0, 2) +
+      Math.pow(acceleration.z || 0, 2)
+    );
+
+    // Check if acceleration exceeds threshold and enough time has passed
+    if (totalAcceleration > threshold && timeDiff > timeout) {
+      setLastShakeTime(now);
+      setShakeCount(prev => {
+        const newCount = prev + 1;
+        if (newCount === 2) {
+          if (onShake) {
+            onShake();
           }
+          return 0;
+        }
+        resetShakeCount();
+        return newCount;
+      });
+
+      // Show visual feedback for first shake
+      const alertBadge = document.getElementById('shake-alert');
+      if (alertBadge && shakeCount === 0) {
+        alertBadge.style.display = 'block';
+        alertBadge.style.opacity = '1';
+        setTimeout(() => {
+          alertBadge.style.display = 'none';
+          alertBadge.style.opacity = '0';
         }, 2000);
       }
-    };
+    }
+  }, [isEnabled, threshold, timeout, lastShakeTime, onShake, resetShakeCount, shakeCount]);
 
-    window.addEventListener('devicemotion', handleShake);
-    return () => window.removeEventListener('devicemotion', handleShake);
-  }, [isEnabled, threshold, timeout, onShake]);
+  // Request permission and enable shake detection
+  const enableShake = async (): Promise<boolean> => {
+    try {
+      setError(null);
+
+      // Check if we're on a mobile device
+      if (!isMobile) {
+        throw new Error('Shake detection is only available on mobile devices');
+      }
+
+      // Request sensor permissions
+      const hasPermission = await requestSensorPermissions();
+      if (!hasPermission) {
+        return false;
+      }
+
+      // Add the actual event listener
+      window.addEventListener('devicemotion', handleMotion);
+      setIsEnabled(true);
+
+      // Verify that we're receiving motion events
+      let motionReceived = false;
+      const testMotion = (e: DeviceMotionEvent) => {
+        motionReceived = true;
+        window.removeEventListener('devicemotion', testMotion);
+      };
+      window.addEventListener('devicemotion', testMotion, { once: true });
+
+      // Check if we actually receive motion events after a short delay
+      await new Promise(resolve => setTimeout(resolve, 1000));
+      if (!motionReceived) {
+        throw new Error('No motion events received. Please ensure motion sensors are enabled in your device settings.');
+      }
+
+      return true;
+
+    } catch (err) {
+      const errorMessage = err instanceof Error ? err.message : 'Failed to enable shake detection';
+      setError(errorMessage);
+      setIsEnabled(false);
+      return false;
+    }
+  };
+
+  // Disable shake detection
+  const disableShake = useCallback(() => {
+    window.removeEventListener('devicemotion', handleMotion);
+    setIsEnabled(false);
+    setShakeCount(0);
+    if (lastShakeTimeout) {
+      clearTimeout(lastShakeTimeout);
+    }
+  }, [handleMotion, lastShakeTimeout]);
+
+  // Cleanup on unmount
+  useEffect(() => {
+    return () => {
+      disableShake();
+    };
+  }, [disableShake]);
 
   return {
+    enableShake,
+    disableShake,
     isEnabled,
     permissionStatus,
     error,
     isIOS,
-    isMobile,
-    enableShake: async () => {
-      const hasPermission = await requestPermission();
-      setIsEnabled(hasPermission);
-      return hasPermission;
-    },
-    disableShake: () => {
-      setIsEnabled(false);
-      setError(null);
-    },
+    isMobile
   };
-}; 
+} 
