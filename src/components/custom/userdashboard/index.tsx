@@ -364,7 +364,7 @@ const UserDashboard = () => {
   return (
     <div className="space-y-6 pb-20 md:pb-0">
       {/* User Profile Section */}
-      <Card className="shadow-soft rounded-2xl border-0 bg-gradient-pink">
+      <Card className="shadow-soft rounded-2xl border-0 bg-gradient-blue">
         <CardContent className="p-6">
           <div className="flex items-center space-x-6">
             <Avatar className="h-20 w-20 ring-4 ring-primary-light">
