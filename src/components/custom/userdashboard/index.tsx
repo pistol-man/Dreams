@@ -11,7 +11,12 @@ import { useToast } from "@/hooks/use-toast";
 import { Switch } from "@/components/ui/switch";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { motion, AnimatePresence } from "framer-motion";
-import { useDrag } from "@use-gesture/react";
+import { useShake } from "@/hooks/use-shake";
+import { useCamera } from "@/hooks/use-camera";
+import { cn } from "@/lib/utils";
+import { EmergencyAlarm } from "@/lib/utils";
+import { generateResponse } from "@/lib/gemini";
+import { franc } from "franc-min/index";
 import {
   Table,
   TableBody,
@@ -20,12 +25,6 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { useShake } from "@/hooks/use-shake";
-import { useCamera } from "@/hooks/use-camera";
-import { cn } from "@/lib/utils";
-import { EmergencyAlarm } from "@/lib/utils";
-import { generateResponse } from "@/lib/gemini";
-import { franc } from "franc-min/index";
 
 interface TrustedContact {
   id: string;
@@ -105,7 +104,7 @@ const UserDashboard = () => {
   const [isSafeModeEnabled, setIsSafeModeEnabled] = useState(false);
   const [isSOSActive, setIsSOSActive] = useState(false);
   const [showCamera, setShowCamera] = useState(false);
-  const [transcript, setTranscript] = useState("");
+  const [transcript, setTranscript] = useState(""); // Only for interim display
   const recognitionRef = useRef<any>(null);
   const transcriptRef = useRef(""); // NEW: accumulate transcript
   const [isSpeaking, setIsSpeaking] = useState(false); // NEW: for voice activity
@@ -179,7 +178,7 @@ const UserDashboard = () => {
     setIsSOSActive(true);
     transcriptRef.current = ""; // Reset transcript
     setTranscript("");
-    setFullTranscript("");
+    setFullTranscript(""); // Only clear at start
     setIsSpeaking(false);
     setSpeechError("");
     if (speechTimeoutRef.current) clearTimeout(speechTimeoutRef.current);
@@ -249,7 +248,7 @@ const UserDashboard = () => {
         // Always accumulate and show the full transcript
         const sessionText = transcriptRef.current + interimTranscript;
         setTranscript(interimTranscript); // Only interim
-        setFullTranscript(sessionText); // Always full
+        setFullTranscript(transcriptRef.current); // Always full, never clear except at SOS start/end
         setIsSpeaking(hasSpeech);
         lastTranscript = sessionText;
         if (hasSpeech && speechTimeoutRef.current) {
@@ -297,14 +296,14 @@ const UserDashboard = () => {
           duration: 8000,
         });
         console.error("SpeechRecognition error:", event);
-        // Always restart if SOS is active
+        // Always robustly restart if SOS is active, including on 'aborted'
         if (isSOSActive) {
-          try { recognition.start(); } catch (e) { /* ignore */ }
+          try { recognition.stop(); recognition.start(); } catch (e) { /* ignore */ }
         }
       };
       recognition.onend = () => {
         setIsSpeaking(false);
-        // Always restart if SOS is active
+        // Always robustly restart if SOS is active
         if (isSOSActive) {
           try { recognition.start(); } catch (e) { /* ignore */ }
         }
@@ -391,6 +390,7 @@ const UserDashboard = () => {
     setIsSpeaking(false);
     setSpeechError("");
     if (speechTimeoutRef.current) clearTimeout(speechTimeoutRef.current);
+    setFullTranscript(""); // Only clear at end
     // Analyze the full transcript after SOS ends
     if (fullTranscript.trim()) {
       analyzeDistress(fullTranscript);
@@ -595,16 +595,6 @@ const UserDashboard = () => {
       });
     }
   };
-
-  // Draggable camera window
-  const bind = useDrag(({ offset: [x, y] }) => {
-    // This useDrag is for the camera window itself, not the video feed
-    // The video feed is managed by useCamera hook
-  });
-
-  // Camera drag state
-  const [cameraPos, setCameraPos] = useState({ x: 0, y: 0 });
-  const cameraBind = useDrag(({ offset: [x, y] }) => setCameraPos({ x, y }), { from: () => [cameraPos.x, cameraPos.y] });
 
   return (
     <div className="space-y-6 pb-20 md:pb-0">
@@ -1196,8 +1186,10 @@ const UserDashboard = () => {
       <AnimatePresence>
         {showCamera && (
           <motion.div
-            {...cameraBind()}
-            style={{ x: cameraPos.x, y: cameraPos.y, position: 'fixed', bottom: 16, right: 16, zIndex: 100 }}
+            drag
+            dragMomentum={false}
+            dragConstraints={{ top: 0, left: 0, right: window.innerWidth - 300, bottom: window.innerHeight - 200 }}
+            style={{ position: 'fixed', bottom: 16, right: 16, zIndex: 100 }}
             className="w-64 rounded-lg overflow-hidden shadow-lg bg-black"
             initial={{ scale: 0 }}
             animate={{ scale: 1 }}
