@@ -35,16 +35,6 @@ const MapPage = () => {
           {/* Date Selector Overlay */}
           <div className="absolute top-4 right-4 bg-white dark:bg-gray-800 rounded-lg shadow-lg p-4 z-[1000]">
             <div className="mb-2 text-sm font-medium">Select Date</div>
-            <Calendar
-              mode="single"
-              selected={selectedDate}
-              onSelect={(date) => date && setSelectedDate(date)}
-              disabled={(date) => 
-                date < new Date("2025-07-19") || 
-                date > new Date("2025-07-25")
-              }
-              className="rounded-md border"
-            />
             <div className="mt-2 text-sm text-center text-gray-600 dark:text-gray-400">
               {format(selectedDate, "MMMM d, yyyy")}
             </div>
