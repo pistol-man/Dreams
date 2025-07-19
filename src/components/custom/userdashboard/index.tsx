@@ -111,7 +111,10 @@ const UserDashboard = () => {
   const [speechError, setSpeechError] = useState(""); // NEW: for error feedback
   const speechTimeoutRef = useRef<NodeJS.Timeout | null>(null); // NEW: for no speech detection
   const [fullTranscript, setFullTranscript] = useState(""); // NEW: store all session text
-  const [analysisResult, setAnalysisResult] = useState<string | null>(null); // NEW: Gemini result
+  // Threat analysis state
+  const [threatLevel, setThreatLevel] = useState<number | null>(null);
+  const [threatType, setThreatType] = useState<string>("");
+  const [threatAction, setThreatAction] = useState<string>("");
   const [currentLang, setCurrentLang] = useState<'en-IN' | 'hi-IN' | 'mr-IN'>('en-IN');
   // Language auto-detection: no manual selection
 
@@ -174,6 +177,43 @@ const UserDashboard = () => {
     }
   ]);
 
+  // Real-time threat classification logic
+  function classifyThreat(text: string) {
+    const lower = text.toLowerCase();
+    if (/kill|killing|murder|beating|assault|stab|gun|knife|shoot|rape|molest/.test(lower)) {
+      setThreatLevel(10);
+      setThreatType("Violent Crime / Life Threatening");
+      setThreatAction("Police force notified and dispatched to your location.");
+    } else if (/follow|following|stalking|chasing|harass|threaten|danger|unsafe|scared|help/.test(lower)) {
+      setThreatLevel(8);
+      setThreatType("Immediate Threat / Pursuit");
+      setThreatAction("Ping sent to nearest police vehicle.");
+    } else if (/counsel|counseling|consult|consulting|talk|mental|stress|depress|anxiety|support|listen/.test(lower)) {
+      setThreatLevel(3);
+      setThreatType("Counseling / Non-urgent Support");
+      setThreatAction("Nearby POC or counseling service is being pinged.");
+    } else if (lower.trim().length > 0) {
+      setThreatLevel(5);
+      setThreatType("General Distress");
+      setThreatAction("Monitoring situation. Please provide more details if possible.");
+    } else {
+      setThreatLevel(null);
+      setThreatType("");
+      setThreatAction("");
+    }
+  }
+
+  // Run threat classification in real time as transcript updates
+  useEffect(() => {
+    if (isSOSActive && fullTranscript.trim().length > 0) {
+      classifyThreat(fullTranscript);
+    } else {
+      setThreatLevel(null);
+      setThreatType("");
+      setThreatAction("");
+    }
+  }, [fullTranscript, isSOSActive]);
+
   const activateSOS = async () => {
     setIsSOSActive(true);
     transcriptRef.current = ""; // Reset transcript
@@ -182,7 +222,9 @@ const UserDashboard = () => {
     setIsSpeaking(false);
     setSpeechError("");
     if (speechTimeoutRef.current) clearTimeout(speechTimeoutRef.current);
-    setAnalysisResult(null);
+    setThreatLevel(null);
+    setThreatType("");
+    setThreatAction("");
     setCurrentLang('en-IN'); // Start with English
     setShowCamera(false); // Always re-enable camera
 
@@ -361,15 +403,15 @@ const UserDashboard = () => {
 
   const analyzeDistress = async (text: string) => {
     if (!text.trim()) return;
-    setAnalysisResult("Analyzing...");
+    // setAnalysisResult("Analyzing..."); // Removed Gemini API call
     try {
-      const prompt = `You are an emergency assistant. Analyze the following transcript of a distress call.\n\nTranscript:\n"""${text}"""\n\n1. What is the likely type of distress (e.g., physical assault, harassment, medical emergency, lost, panic, etc.)?\n2. How urgent is the situation? (High/Medium/Low)\n3. Give a one-sentence summary of the situation.\n\nRespond in this format:\nType: <type>\nUrgency: <urgency>\nSummary: <summary>`;
-      const result = await generateResponse([
-        { role: "user", content: prompt }
-      ]);
-      setAnalysisResult(result);
+      // const prompt = `You are an emergency assistant. Analyze the following transcript of a distress call.\n\nTranscript:\n"""${text}"""\n\n1. What is the likely type of distress (e.g., physical assault, harassment, medical emergency, lost, panic, etc.)?\n2. How urgent is the situation? (High/Medium/Low)\n3. Give a one-sentence summary of the situation.\n\nRespond in this format:\nType: <type>\nUrgency: <urgency>\nSummary: <summary>`;
+      // const result = await generateResponse([
+      //   { role: "user", content: prompt }
+      // ]);
+      // setAnalysisResult(result);
     } catch (err) {
-      setAnalysisResult("Analysis failed. Please try again.");
+      // setAnalysisResult("Analysis failed. Please try again.");
     }
   };
 
@@ -391,10 +433,9 @@ const UserDashboard = () => {
     setSpeechError("");
     if (speechTimeoutRef.current) clearTimeout(speechTimeoutRef.current);
     setFullTranscript(""); // Only clear at end
-    // Analyze the full transcript after SOS ends
-    if (fullTranscript.trim()) {
-      analyzeDistress(fullTranscript);
-    }
+    setThreatLevel(null);
+    setThreatType("");
+    setThreatAction("");
     toast({
       title: "SOS Deactivated",
       description: "Emergency mode has been turned off",
@@ -1112,11 +1153,12 @@ const UserDashboard = () => {
                   <p className="whitespace-pre-line text-white text-xs">{fullTranscript}</p>
                 </div>
               )}
-              {/* Gemini Analysis Result */}
-              {analysisResult && (
+              {/* Real-time Threat Analysis */}
+              {isSOSActive && threatLevel !== null && (
                 <div className="bg-yellow-100 border-l-4 border-yellow-500 text-yellow-900 p-3 rounded mb-4">
-                  <h4 className="font-semibold mb-1">Distress & Urgency Analysis</h4>
-                  <pre className="whitespace-pre-line text-sm">{analysisResult}</pre>
+                  <h4 className="font-semibold mb-1">Threat Level: <span className={threatLevel >= 8 ? 'text-red-600' : threatLevel >= 5 ? 'text-orange-600' : 'text-green-600'}>{threatLevel}/10</span></h4>
+                  <div className="mb-1 font-semibold">Type: {threatType}</div>
+                  <div className="mb-1">{threatAction}</div>
                 </div>
               )}
               <div className="grid grid-cols-2 gap-4 mb-6">
