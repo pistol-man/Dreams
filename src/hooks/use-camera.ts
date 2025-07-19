@@ -4,7 +4,6 @@ export const useCamera = () => {
   const videoRef = useRef<HTMLVideoElement | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [stream, setStream] = useState<MediaStream | null>(null);
-  const [isInitialized, setIsInitialized] = useState(false);
 
   const enableCamera = async (): Promise<boolean> => {
     try {
@@ -18,11 +17,10 @@ export const useCamera = () => {
       });
 
       setStream(mediaStream);
-      
+      // Always set srcObject
       if (videoRef.current) {
         videoRef.current.srcObject = mediaStream;
         await videoRef.current.play();
-        setIsInitialized(true);
       }
 
       setError(null);
@@ -45,7 +43,6 @@ export const useCamera = () => {
     if (videoRef.current) {
       videoRef.current.srcObject = null;
     }
-    setIsInitialized(false);
     setError(null);
   };
 
@@ -56,23 +53,22 @@ export const useCamera = () => {
     };
   }, []);
 
-  // Monitor video element and stream connection
+  // Always attach stream to video element when either changes
   useEffect(() => {
-    if (videoRef.current && stream && !isInitialized) {
+    if (videoRef.current && stream) {
       videoRef.current.srcObject = stream;
       videoRef.current.play().catch(err => {
         console.error('Error playing video:', err);
         setError('Failed to display camera feed');
       });
     }
-  }, [stream, isInitialized]);
+  }, [stream, videoRef]);
 
   return {
     videoRef,
     error,
     enableCamera,
     disableCamera,
-    stream,
-    isInitialized
+    stream
   };
 }; 

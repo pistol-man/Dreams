@@ -185,6 +185,7 @@ const UserDashboard = () => {
     if (speechTimeoutRef.current) clearTimeout(speechTimeoutRef.current);
     setAnalysisResult(null);
     setCurrentLang('en-IN'); // Start with English
+    setShowCamera(false); // Always re-enable camera
 
     // Start the alarm sound
     EmergencyAlarm.start();
@@ -245,9 +246,10 @@ const UserDashboard = () => {
             if (event.results[i][0].transcript.trim() !== "") hasSpeech = true;
           }
         }
+        // Always accumulate and show the full transcript
         const sessionText = transcriptRef.current + interimTranscript;
-        setTranscript(sessionText);
-        setFullTranscript(sessionText); // Store the full session transcript
+        setTranscript(interimTranscript); // Only interim
+        setFullTranscript(sessionText); // Always full
         setIsSpeaking(hasSpeech);
         lastTranscript = sessionText;
         if (hasSpeech && speechTimeoutRef.current) {
@@ -295,9 +297,14 @@ const UserDashboard = () => {
           duration: 8000,
         });
         console.error("SpeechRecognition error:", event);
+        // Always restart if SOS is active
+        if (isSOSActive) {
+          try { recognition.start(); } catch (e) { /* ignore */ }
+        }
       };
       recognition.onend = () => {
         setIsSpeaking(false);
+        // Always restart if SOS is active
         if (isSOSActive) {
           try { recognition.start(); } catch (e) { /* ignore */ }
         }
@@ -594,6 +601,10 @@ const UserDashboard = () => {
     // This useDrag is for the camera window itself, not the video feed
     // The video feed is managed by useCamera hook
   });
+
+  // Camera drag state
+  const [cameraPos, setCameraPos] = useState({ x: 0, y: 0 });
+  const cameraBind = useDrag(({ offset: [x, y] }) => setCameraPos({ x, y }), { from: () => [cameraPos.x, cameraPos.y] });
 
   return (
     <div className="space-y-6 pb-20 md:pb-0">
@@ -1185,10 +1196,9 @@ const UserDashboard = () => {
       <AnimatePresence>
         {showCamera && (
           <motion.div
-            drag
-            dragMomentum={false}
-            dragConstraints={{ top: 0, right: 0, bottom: 0, left: 0 }}
-            className="fixed bottom-4 right-4 w-64 rounded-lg overflow-hidden shadow-lg bg-black z-[100]"
+            {...cameraBind()}
+            style={{ x: cameraPos.x, y: cameraPos.y, position: 'fixed', bottom: 16, right: 16, zIndex: 100 }}
+            className="w-64 rounded-lg overflow-hidden shadow-lg bg-black"
             initial={{ scale: 0 }}
             animate={{ scale: 1 }}
             exit={{ scale: 0 }}
