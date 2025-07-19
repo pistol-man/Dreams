@@ -25,6 +25,7 @@ import { useCamera } from "@/hooks/use-camera";
 import { cn } from "@/lib/utils";
 import { EmergencyAlarm } from "@/lib/utils";
 import { generateResponse } from "@/lib/gemini";
+import { franc } from "franc-min/index";
 
 interface TrustedContact {
   id: string;
@@ -43,6 +44,13 @@ interface NearbyInfrastructure {
   timeToReach: string;
   address: string;
   phone: string;
+}
+
+// Robust language detection using franc-min
+function mapFrancToSpeechLang(francCode: string): 'en-IN' | 'hi-IN' | 'mr-IN' {
+  if (francCode === 'hin') return 'hi-IN';
+  if (francCode === 'mar') return 'mr-IN';
+  return 'en-IN';
 }
 
 const UserDashboard = () => {
@@ -105,6 +113,7 @@ const UserDashboard = () => {
   const speechTimeoutRef = useRef<NodeJS.Timeout | null>(null); // NEW: for no speech detection
   const [fullTranscript, setFullTranscript] = useState(""); // NEW: store all session text
   const [analysisResult, setAnalysisResult] = useState<string | null>(null); // NEW: Gemini result
+  const [currentLang, setCurrentLang] = useState<'en-IN' | 'hi-IN' | 'mr-IN'>('en-IN');
   // Language auto-detection: no manual selection
 
   const { enableCamera, disableCamera, videoRef, error: cameraError, stream } = useCamera();
@@ -175,6 +184,7 @@ const UserDashboard = () => {
     setSpeechError("");
     if (speechTimeoutRef.current) clearTimeout(speechTimeoutRef.current);
     setAnalysisResult(null);
+    setCurrentLang('en-IN'); // Start with English
 
     // Start the alarm sound
     EmergencyAlarm.start();
@@ -218,10 +228,10 @@ const UserDashboard = () => {
     // Start speech recognition
     if ("webkitSpeechRecognition" in window || "SpeechRecognition" in window) {
       const SpeechRecognition = (window as any).SpeechRecognition || (window as any).webkitSpeechRecognition;
-      const recognition = new SpeechRecognition();
+      let recognition = new SpeechRecognition();
       recognition.continuous = true;
       recognition.interimResults = true;
-      recognition.lang = 'und'; // 'und' = undefined, lets browser auto-detect language
+      recognition.lang = currentLang;
       let lastTranscript = "";
       recognition.onresult = (event: any) => {
         let interimTranscript = "";
@@ -242,6 +252,32 @@ const UserDashboard = () => {
         lastTranscript = sessionText;
         if (hasSpeech && speechTimeoutRef.current) {
           clearTimeout(speechTimeoutRef.current);
+        }
+        // Robust language detection using franc-min
+        const francCode = franc(sessionText, { minLength: 3 });
+        const detected = mapFrancToSpeechLang(francCode);
+        if (detected !== currentLang) {
+          setCurrentLang(detected);
+          recognition.stop();
+          // Restart recognition with new language
+          setTimeout(() => {
+            if (recognitionRef.current) {
+              recognitionRef.current.onend = null;
+              recognitionRef.current.stop();
+              recognitionRef.current = null;
+            }
+            const newRec = new SpeechRecognition();
+            newRec.continuous = true;
+            newRec.interimResults = true;
+            newRec.lang = detected;
+            newRec.onresult = recognition.onresult;
+            newRec.onspeechstart = recognition.onspeechstart;
+            newRec.onspeechend = recognition.onspeechend;
+            newRec.onerror = recognition.onerror;
+            newRec.onend = recognition.onend;
+            recognitionRef.current = newRec;
+            newRec.start();
+          }, 200);
         }
       };
       recognition.onspeechstart = () => {
@@ -1039,7 +1075,7 @@ const UserDashboard = () => {
               <h2 className="text-3xl font-bold">SOS ACTIVATED</h2>
               <p className="text-lg mb-4">Emergency services have been notified</p>
               {/* Auto language detection note */}
-              <div className="mb-2 text-xs text-white font-semibold">Language will be auto-detected (English, Hindi, Marathi, etc.)</div>
+              <div className="mb-2 text-xs text-white font-semibold">Language will be auto-detected (English, Hindi, Marathi). Detected: {currentLang}</div>
               {/* Live Transcript Section */}
               <div className="bg-black/60 rounded-lg p-4 mb-4 max-h-40 overflow-y-auto text-left relative">
                 <h4 className="font-semibold text-white mb-2 flex items-center gap-2">
