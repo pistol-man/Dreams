@@ -44,7 +44,7 @@ export async function generateResponse(messages: ChatMessage[]) {
 
     // Get the model with optimized settings
     const model = genAI.getGenerativeModel({ 
-      model: 'gemini-pro', // Using gemini-pro for better reliability
+      model: 'gemini-1.5-flash', // Using gemini-pro for better reliability
       generationConfig: {
         temperature: 0.7,
         topK: 40,
@@ -159,7 +159,7 @@ Keep response concise and clear.`;
     }
 
     const model = genAI.getGenerativeModel({ 
-      model: 'gemini-pro', // Using gemini-pro for better reliability
+      model: 'gemini-1.5-flash', // Using gemini-1.5-flash for better reliability
       generationConfig: {
         temperature: 0.7,
         topK: 40,
