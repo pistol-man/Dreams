@@ -24,6 +24,7 @@ import { useShake } from "@/hooks/use-shake";
 import { useCamera } from "@/hooks/use-camera";
 import { cn } from "@/lib/utils";
 import { EmergencyAlarm } from "@/lib/utils";
+import { generateResponse } from "@/lib/gemini";
 
 interface TrustedContact {
   id: string;
@@ -102,6 +103,9 @@ const UserDashboard = () => {
   const [isSpeaking, setIsSpeaking] = useState(false); // NEW: for voice activity
   const [speechError, setSpeechError] = useState(""); // NEW: for error feedback
   const speechTimeoutRef = useRef<NodeJS.Timeout | null>(null); // NEW: for no speech detection
+  const [fullTranscript, setFullTranscript] = useState(""); // NEW: store all session text
+  const [analysisResult, setAnalysisResult] = useState<string | null>(null); // NEW: Gemini result
+  // Language auto-detection: no manual selection
 
   const { enableCamera, disableCamera, videoRef, error: cameraError, stream } = useCamera();
   const { 
@@ -166,9 +170,11 @@ const UserDashboard = () => {
     setIsSOSActive(true);
     transcriptRef.current = ""; // Reset transcript
     setTranscript("");
+    setFullTranscript("");
     setIsSpeaking(false);
     setSpeechError("");
     if (speechTimeoutRef.current) clearTimeout(speechTimeoutRef.current);
+    setAnalysisResult(null);
 
     // Start the alarm sound
     EmergencyAlarm.start();
@@ -215,7 +221,7 @@ const UserDashboard = () => {
       const recognition = new SpeechRecognition();
       recognition.continuous = true;
       recognition.interimResults = true;
-      recognition.lang = "en-IN";
+      recognition.lang = 'und'; // 'und' = undefined, lets browser auto-detect language
       let lastTranscript = "";
       recognition.onresult = (event: any) => {
         let interimTranscript = "";
@@ -229,9 +235,11 @@ const UserDashboard = () => {
             if (event.results[i][0].transcript.trim() !== "") hasSpeech = true;
           }
         }
-        setTranscript(transcriptRef.current + interimTranscript);
+        const sessionText = transcriptRef.current + interimTranscript;
+        setTranscript(sessionText);
+        setFullTranscript(sessionText); // Store the full session transcript
         setIsSpeaking(hasSpeech);
-        lastTranscript = transcriptRef.current + interimTranscript;
+        lastTranscript = sessionText;
         if (hasSpeech && speechTimeoutRef.current) {
           clearTimeout(speechTimeoutRef.current);
         }
@@ -309,6 +317,20 @@ const UserDashboard = () => {
     });
   };
 
+  const analyzeDistress = async (text: string) => {
+    if (!text.trim()) return;
+    setAnalysisResult("Analyzing...");
+    try {
+      const prompt = `You are an emergency assistant. Analyze the following transcript of a distress call.\n\nTranscript:\n"""${text}"""\n\n1. What is the likely type of distress (e.g., physical assault, harassment, medical emergency, lost, panic, etc.)?\n2. How urgent is the situation? (High/Medium/Low)\n3. Give a one-sentence summary of the situation.\n\nRespond in this format:\nType: <type>\nUrgency: <urgency>\nSummary: <summary>`;
+      const result = await generateResponse([
+        { role: "user", content: prompt }
+      ]);
+      setAnalysisResult(result);
+    } catch (err) {
+      setAnalysisResult("Analysis failed. Please try again.");
+    }
+  };
+
   const deactivateSOS = () => {
     setIsSOSActive(false);
     setShowCamera(false);
@@ -326,6 +348,10 @@ const UserDashboard = () => {
     setIsSpeaking(false);
     setSpeechError("");
     if (speechTimeoutRef.current) clearTimeout(speechTimeoutRef.current);
+    // Analyze the full transcript after SOS ends
+    if (fullTranscript.trim()) {
+      analyzeDistress(fullTranscript);
+    }
     toast({
       title: "SOS Deactivated",
       description: "Emergency mode has been turned off",
@@ -1012,6 +1038,8 @@ const UserDashboard = () => {
               <AlertTriangle className="h-16 w-16 mx-auto animate-pulse" />
               <h2 className="text-3xl font-bold">SOS ACTIVATED</h2>
               <p className="text-lg mb-4">Emergency services have been notified</p>
+              {/* Auto language detection note */}
+              <div className="mb-2 text-xs text-white font-semibold">Language will be auto-detected (English, Hindi, Marathi, etc.)</div>
               {/* Live Transcript Section */}
               <div className="bg-black/60 rounded-lg p-4 mb-4 max-h-40 overflow-y-auto text-left relative">
                 <h4 className="font-semibold text-white mb-2 flex items-center gap-2">
@@ -1040,6 +1068,20 @@ const UserDashboard = () => {
                   <div className="mt-2 text-xs text-red-400 font-semibold">{speechError}</div>
                 )}
               </div>
+              {/* Full Session Transcript Section */}
+              {fullTranscript && (
+                <div className="bg-black/40 rounded-lg p-3 mb-4 max-h-32 overflow-y-auto text-left">
+                  <h4 className="font-semibold text-white mb-1">Full Session Transcript:</h4>
+                  <p className="whitespace-pre-line text-white text-xs">{fullTranscript}</p>
+                </div>
+              )}
+              {/* Gemini Analysis Result */}
+              {analysisResult && (
+                <div className="bg-yellow-100 border-l-4 border-yellow-500 text-yellow-900 p-3 rounded mb-4">
+                  <h4 className="font-semibold mb-1">Distress & Urgency Analysis</h4>
+                  <pre className="whitespace-pre-line text-sm">{analysisResult}</pre>
+                </div>
+              )}
               <div className="grid grid-cols-2 gap-4 mb-6">
                 <Button
                   variant="outline"
