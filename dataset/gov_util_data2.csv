@@ -1,0 +1,364 @@
+pincode,District,State,Population_Density,Fire_Brigade_Vehicles,Ambulances,Police_Personnel,Paramedics,Doctors,Special_Requirement
+400001,Mumbai City,Maharashtra,32400,8,18,450,35,650,High density financial district
+400002,Mumbai City,Maharashtra,55000,6,15,380,30,750,Dense wholesale market area
+400003,Mumbai City,Maharashtra,68000,5,14,350,28,700,Extremely dense market area Pydhonie
+400004,Mumbai City,Maharashtra,48000,5,14,320,28,600,High density residential
+400005,Mumbai City,Maharashtra,35000,7,16,350,32,620,Coastal area with high rises
+400006,Mumbai City,Maharashtra,29000,4,10,250,20,400,Affluent residential Malabar Hill
+400007,Mumbai City,Maharashtra,41000,6,15,330,30,580,Grant Road dense commercial
+400008,Mumbai City,Maharashtra,52000,6,15,330,30,600,Major railway line intersection
+400009,Mumbai City,Maharashtra,75000,7,18,400,36,800,Extremely dense market area
+400010,Mumbai City,Maharashtra,33000,5,12,280,24,450,Mazgaon dock area
+400011,Mumbai City,Maharashtra,95000,4,12,400,25,750,Extremely high density informal settlement
+400012,Mumbai City,Maharashtra,47000,6,16,340,32,600,Proximity to major railway workshop
+400013,Mumbai City,Maharashtra,65000,7,20,420,40,800,Major transport and commercial hub
+400014,Mumbai City,Maharashtra,68000,6,18,390,36,750,High density residential old textile mills
+400015,Mumbai City,Maharashtra,36000,5,14,310,28,550,Sewri industrial area
+400016,Mumbai City,Maharashtra,41000,6,18,360,36,650,Major transport hub Dadar
+400017,Mumbai City,Maharashtra,80000,5,15,380,30,700,Part of Dharavi high density
+400018,Mumbai City,Maharashtra,25000,7,15,400,30,500,Worli commercial and residential
+400019,Mumbai City,Maharashtra,61000,6,16,370,32,680,Dense residential Matunga
+400020,Mumbai City,Maharashtra,31000,5,13,300,26,500,Marine Lines business district
+400021,Mumbai City,Maharashtra,28000,6,14,320,28,550,Nariman Point high security business district
+400022,Mumbai Suburban,Maharashtra,58000,6,17,380,34,700,Dense residential Sion Koliwada
+400023,Mumbai City,Maharashtra,20000,4,8,200,16,300,Hutatma Chowk business area
+400024,Mumbai Suburban,Maharashtra,42000,5,14,320,28,550,Nehru Nagar residential area
+400025,Mumbai City,Maharashtra,38000,7,17,370,34,650,Prabhadevi commercial and residential
+400026,Mumbai City,Maharashtra,37500,8,20,450,40,750,Affluent coastal residential area Cumballa Hill
+400027,Mumbai City,Maharashtra,15000,4,10,220,20,350,Veer Jeejamata Udyan zoo and garden
+400028,Mumbai City,Maharashtra,66000,6,18,390,36,720,High density residential Dadar
+400029,Mumbai Suburban,Maharashtra,40000,7,18,400,36,680,Santacruz airport residential colony
+400030,Mumbai City,Maharashtra,22000,5,12,280,24,450,Century Mill area
+400031,Mumbai City,Maharashtra,59000,6,16,360,32,650,Wadala dense residential area
+400032,Mumbai City,Maharashtra,18000,6,15,350,30,500,Mantralaya government offices
+400033,Mumbai City,Maharashtra,51000,5,14,330,28,600,Dense market area Mandvi
+400034,Mumbai City,Maharashtra,34000,7,18,380,36,680,Haji Ali high end retail and residential
+400035,Mumbai City,Maharashtra,10000,5,12,300,24,400,Raj Bhavan high security area
+400036,Mumbai City,Maharashtra,26000,5,13,290,26,480,AK Marg commercial area
+400037,Mumbai City,Maharashtra,34000,5,14,310,28,520,Antop Hill industrial area
+400038,Mumbai City,Maharashtra,21000,6,14,330,28,500,Ballard Estate business district
+400039,Mumbai City,Maharashtra,12000,4,8,200,16,300,Council Hall area
+400042,Mumbai Suburban,Maharashtra,48000,6,16,350,32,620,Bhandup East residential area
+400043,Mumbai Suburban,Maharashtra,45000,6,15,340,30,600,Shivaji Nagar Kurla dense area
+400049,Mumbai Suburban,Maharashtra,31000,6,15,330,30,580,Beachfront tourist area Juhu
+400050,Mumbai Suburban,Maharashtra,45000,8,22,480,44,850,Coastal area high density commercial residential Bandra West
+400051,Mumbai Suburban,Maharashtra,48000,7,19,410,38,780,Government and residential complexes Bandra East
+400052,Mumbai Suburban,Maharashtra,38000,6,15,340,30,600,Khar residential and commercial
+400053,Mumbai Suburban,Maharashtra,42000,7,19,400,38,750,Major business and transit hub Andheri
+400054,Mumbai Suburban,Maharashtra,46000,6,17,380,34,700,High density residential Santacruz West
+400055,Mumbai Suburban,Maharashtra,41000,6,16,360,32,650,Proximity to airport residential Santacruz East
+400056,Mumbai Suburban,Maharashtra,39000,6,15,350,30,620,Affluent residential area Vile Parle West
+400057,Mumbai Suburban,Maharashtra,44000,6,16,370,32,680,Domestic airport dense residential Vile Parle East
+400058,Mumbai Suburban,Maharashtra,49000,7,18,390,36,720,Dense residential and commercial mix Andheri West
+400059,Mumbai Suburban,Maharashtra,43000,6,16,350,32,630,Proximity to airport cargo complex Marol
+400060,Mumbai Suburban,Maharashtra,41000,5,14,310,28,550,Dense residential Jogeshwari East
+400061,Mumbai Suburban,Maharashtra,32000,5,13,290,26,500,Versova coastal area
+400062,Mumbai Suburban,Maharashtra,35000,5,14,300,28,520,Goregaon West residential
+400063,Mumbai Suburban,Maharashtra,28000,5,12,270,24,450,Proximity to national park Goregaon East
+400064,Mumbai Suburban,Maharashtra,48000,6,17,360,34,650,Malad West dense residential and commercial
+400065,Mumbai Suburban,Maharashtra,18000,4,10,230,20,380,Aarey Milk Colony green area
+400066,Mumbai Suburban,Maharashtra,46000,6,16,340,32,620,Borivali East dense residential
+400067,Mumbai Suburban,Maharashtra,46000,6,15,320,30,600,High density residential Kandivali West
+400068,Mumbai Suburban,Maharashtra,39000,5,14,300,28,540,Dahisar residential
+400069,Mumbai Suburban,Maharashtra,42000,6,15,330,30,580,Andheri East dense residential
+400070,Mumbai Suburban,Maharashtra,44000,6,16,350,32,630,Kurla dense residential and commercial
+400071,Mumbai Suburban,Maharashtra,36000,8,18,380,36,680,Proximity to BARC and refineries Industrial Hazard
+400072,Mumbai Suburban,Maharashtra,33000,7,16,350,32,650,High rise residential business parks Powai
+400073,Mumbai Suburban,Maharashtra,25000,6,14,300,28,500,Trombay industrial and residential
+400074,Mumbai Suburban,Maharashtra,30000,5,13,290,26,480,FCI Mumbai area
+400075,Mumbai Suburban,Maharashtra,35000,5,14,310,28,550,Pant Nagar industrial estate area
+400076,Mumbai Suburban,Maharashtra,15000,6,15,320,30,450,IIT Mumbai campus area
+400077,Mumbai Suburban,Maharashtra,40000,6,16,340,32,600,Rajawadi hospital area Ghatkopar
+400078,Mumbai Suburban,Maharashtra,41000,6,15,330,30,580,Bhandup West industrial estate
+400079,Mumbai Suburban,Maharashtra,43000,6,15,340,30,600,Vikhroli dense residential
+400080,Mumbai Suburban,Maharashtra,40000,5,14,300,28,550,Mulund West dense residential
+400081,Mumbai Suburban,Maharashtra,38000,5,13,290,26,520,Mulund East residential
+400082,Mumbai Suburban,Maharashtra,35000,4,12,280,24,480,Mulund Colony residential
+400083,Mumbai Suburban,Maharashtra,37000,5,13,290,26,530,Tagore Nagar Vikhroli
+400084,Mumbai Suburban,Maharashtra,52000,7,18,380,36,700,Barve Nagar high density residential Ghatkopar
+400085,Mumbai Suburban,Maharashtra,18000,7,16,360,32,550,BARC high security nuclear facility
+400086,Mumbai Suburban,Maharashtra,53000,6,17,370,34,680,Ghatkopar West dense residential
+400087,Mumbai Suburban,Maharashtra,20000,5,12,270,24,430,NITIE campus area
+400088,Mumbai Suburban,Maharashtra,36000,6,14,320,28,580,Telecom Factory Deonar industrial
+400089,Mumbai Suburban,Maharashtra,45000,6,16,340,32,640,Tilak Nagar high end residential Chembur
+400090,Mumbai Suburban,Maharashtra,40000,5,14,310,28,560,Bangur Nagar Goregaon residential
+400091,Mumbai Suburban,Maharashtra,48000,6,16,350,32,630,Borivali main post office area
+400092,Mumbai Suburban,Maharashtra,43000,6,14,310,28,590,Borivali West coastal prone to waterlogging
+400093,Mumbai Suburban,Maharashtra,39000,6,15,330,30,580,Chakala MIDC business park
+400094,Mumbai Suburban,Maharashtra,22000,6,14,310,28,500,Anushakti Nagar BARC township high security
+400095,Mumbai Suburban,Maharashtra,35000,5,13,300,26,510,Kharodi residential area
+400096,Mumbai Suburban,Maharashtra,29000,7,16,350,32,600,SEEPZ special economic zone
+400097,Mumbai Suburban,Maharashtra,37000,5,12,290,24,530,Malad East entry point to city high traffic
+400098,Mumbai Suburban,Maharashtra,19000,4,10,240,20,390,Vidya Nagri university campus
+400099,Mumbai Suburban,Maharashtra,25000,8,20,400,40,650,Sahar international airport high security
+400101,Mumbai Suburban,Maharashtra,41000,6,13,300,26,570,Kandivali East dense residential area
+400102,Mumbai Suburban,Maharashtra,36000,5,13,290,26,540,Jogeshwari West residential area
+400103,Mumbai Suburban,Maharashtra,32000,5,11,260,22,480,Mandpeshwar Borivali proximity to Film City
+400104,Mumbai Suburban,Maharashtra,38000,5,12,280,24,530,Motilal Nagar Goregaon dense residential
+110001,New Delhi,Delhi,8500,10,25,800,50,900,VVIP Zone Parliament Govt Offices
+110002,New Delhi,Delhi,55000,7,20,500,40,800,Dense commercial Railway Station proximity
+110003,New Delhi,Delhi,11000,9,22,650,45,850,VVIP residential Diplomatic area
+110004,New Delhi,Delhi,3500,12,28,900,55,1000,Rashtrapati Bhavan Highest Security Zone
+110005,Central Delhi,Delhi,45000,6,18,400,36,700,Dense commercial Paharganj Karol Bagh
+110006,North Delhi,Delhi,65000,8,25,550,50,950,Old Delhi dense markets heritage sites
+110007,North Delhi,Delhi,48000,6,18,380,36,650,Delhi University North Campus
+110008,West Delhi,Delhi,52000,6,17,370,34,680,Dense residential Patel Nagar
+110009,North West Delhi,Delhi,39000,5,15,320,30,550,Industrial area GT Karnal Road
+110010,South West Delhi,Delhi,28000,7,18,400,36,600,Delhi Cantt Military area
+110011,New Delhi,Delhi,9500,10,24,750,50,900,VVIP Zone Supreme Court Ministries
+110012,Central Delhi,Delhi,35000,5,16,340,32,600,Inderpuri residential area
+110013,South East Delhi,Delhi,40000,6,17,370,34,680,Hazrat Nizamuddin Dargah area
+110014,South East Delhi,Delhi,51000,6,17,360,34,700,Dense residential Lajpat Nagar
+110015,West Delhi,Delhi,62000,7,19,410,38,750,High density residential Rajouri Garden
+110016,South West Delhi,Delhi,32000,7,18,380,36,680,Affluent residential Green Park
+110017,South Delhi,Delhi,35000,8,20,420,40,750,Affluent residential Qutub Minar proximity
+110018,West Delhi,Delhi,75000,6,18,390,36,780,Very high density residential Tilak Nagar
+110019,South East Delhi,Delhi,48000,7,19,400,38,720,Dense residential commercial hub Kalkaji
+110020,South Delhi,Delhi,25000,5,14,310,28,500,Industrial area Okhla
+110021,South West Delhi,Delhi,15000,6,16,350,32,550,Diplomatic Enclave Chanakyapuri
+110022,South West Delhi,Delhi,29000,6,17,360,34,600,Airport residential colony Safdarjung
+110023,South West Delhi,Delhi,33000,5,15,330,30,580,Sarojini Nagar market area
+110024,South East Delhi,Delhi,45000,7,18,380,36,720,Affluent residential Defence Colony
+110025,South East Delhi,Delhi,58000,6,17,370,34,700,Dense residential Okhla Jamia Nagar
+110026,West Delhi,Delhi,61000,6,18,380,36,710,Dense residential Mehrauli
+110027,West Delhi,Delhi,68000,7,19,400,38,750,High density residential Janakpuri
+110028,West Delhi,Delhi,40000,6,16,350,32,630,Naraina Industrial Area
+110029,South West Delhi,Delhi,28000,6,15,340,30,600,Safdarjung Enclave residential
+110030,South West Delhi,Delhi,22000,5,14,300,28,500,Mehrauli Lado Sarai area
+110031,East Delhi,Delhi,60000,6,17,360,34,680,Gandhi Nagar dense market area
+110032,North East Delhi,Delhi,65000,7,18,380,36,700,Shahdara dense residential
+110033,North West Delhi,Delhi,45000,5,14,310,28,580,Industrial Area Wazirpur Adarsh Nagar
+110034,North West Delhi,Delhi,53000,6,17,360,34,690,Dense residential Pitampura
+110035,North West Delhi,Delhi,48000,6,16,350,32,650,Shakurpur Lawrence Road industrial
+110036,North Delhi,Delhi,30000,4,12,280,24,480,Alipur rural area
+110037,South West Delhi,Delhi,25000,8,22,500,45,750,IGI Airport High Security
+110038,South West Delhi,Delhi,12000,5,13,290,26,450,Delhi Cantt Rajokari area
+110039,North West Delhi,Delhi,28000,4,11,260,22,460,Bawana industrial and rural
+110040,North West Delhi,Delhi,32000,4,12,270,24,470,Narela industrial and residential
+110041,North West Delhi,Delhi,72000,6,18,390,36,750,High density residential Sultanpuri Nangloi
+110042,North West Delhi,Delhi,41000,5,14,300,28,550,Badli industrial and residential
+110043,West Delhi,Delhi,65000,6,17,370,34,700,Dense residential Vikaspuri Najafgarh
+110044,South East Delhi,Delhi,47000,7,18,390,36,710,Badarpur Tughlakabad dense area
+110045,South West Delhi,Delhi,50000,6,16,350,32,640,Palam Colony dense residential
+110046,South West Delhi,Delhi,38000,5,15,330,30,600,Nangal Raya residential
+110047,South West Delhi,Delhi,16000,5,13,290,26,480,Arjan Garh farmhouse area
+110048,South Delhi,Delhi,38000,7,20,410,40,730,Affluent residential Greater Kailash
+110049,South Delhi,Delhi,36000,7,19,400,38,700,Affluent residential Vasant Kunj Asiad Village
+110051,East Delhi,Delhi,63000,6,17,370,34,690,Krishna Nagar dense residential
+110052,North Delhi,Delhi,41000,6,16,340,32,620,Model Town residential
+110053,North East Delhi,Delhi,70000,7,19,410,38,750,Bhajanpura Ghonda very dense residential
+110054,North Delhi,Delhi,25000,5,14,320,28,550,Civil Lines government offices
+110055,Central Delhi,Delhi,58000,6,17,360,34,680,Paharganj dense hotel and market area
+110056,West Delhi,Delhi,40000,5,15,330,30,600,New Multan Nagar residential
+110057,South West Delhi,Delhi,30000,6,16,360,32,620,Vasant Vihar affluent residential
+110058,West Delhi,Delhi,69000,7,20,420,40,780,High density residential Janakpuri B Block
+110059,West Delhi,Delhi,65000,7,20,400,38,750,High density residential area Uttam Nagar
+110060,Central Delhi,Delhi,50000,6,16,350,32,650,Rajender Nagar residential
+110061,South West Delhi,Delhi,20000,4,10,250,20,420,Bijwasan rural and farmhouse area
+110062,South Delhi,Delhi,45000,6,17,360,34,680,Ambedkar Nagar Khanpur dense residential
+110063,South East Delhi,Delhi,29000,5,14,310,28,540,Okhla Industrial Area Phase 3
+110064,West Delhi,Delhi,48000,6,16,350,32,630,Hari Nagar dense residential
+110065,South East Delhi,Delhi,49000,6,18,370,34,700,Dense residential Sarita Vihar New Friends Colony
+110066,South West Delhi,Delhi,32000,7,18,380,36,650,RK Puram government housing
+110067,South West Delhi,Delhi,24000,6,17,360,34,600,JNU campus Munirka area
+110068,South Delhi,Delhi,20000,5,14,300,28,500,IGNOU Maidan Garhi area
+110069,Central Delhi,Delhi,10000,4,8,220,16,350,UPSC office area
+110070,South West Delhi,Delhi,28000,6,15,330,30,580,Vasant Kunj residential sectors
+110071,South West Delhi,Delhi,56000,6,17,360,34,670,Dense residential Palam
+110072,South West Delhi,Delhi,23000,5,14,300,28,510,Jharoda Kalan police training college
+110073,South West Delhi,Delhi,35000,5,14,310,28,560,Ujwa rural area
+110074,South Delhi,Delhi,18000,4,12,280,24,460,Chattarpur farmhouse area
+110075,South West Delhi,Delhi,63000,7,19,400,38,730,Dense residential Dwarka sectors
+110076,South East Delhi,Delhi,40000,6,16,350,32,640,Okhla Industrial Area
+110077,South West Delhi,Delhi,48000,6,18,380,36,700,High rise residential Dwarka
+110078,South West Delhi,Delhi,55000,6,17,360,34,680,Dwarka sector 1 to 10
+110081,North West Delhi,Delhi,30000,4,11,260,22,450,Kanjhawala rural area
+110082,North West Delhi,Delhi,26000,4,10,250,20,440,Khera Kalan rural area
+110083,North West Delhi,Delhi,65000,6,17,370,34,700,Mangolpuri dense residential
+110084,North West Delhi,Delhi,24000,4,10,240,20,430,Kutubgarh rural area
+110085,North West Delhi,Delhi,59000,7,20,410,40,760,High density residential Rohini
+110086,North West Delhi,Delhi,50000,6,16,350,32,660,Rohini sectors
+110087,West Delhi,Delhi,45000,5,15,330,30,610,Paschim Vihar residential
+110088,East Delhi,Delhi,58000,6,18,370,36,690,Dense residential Laxmi Nagar
+110089,North West Delhi,Delhi,15000,3,8,200,16,340,Holambi Kalan area
+110090,North West Delhi,Delhi,22000,4,10,230,20,400,Tikri Kalan border area
+110091,East Delhi,Delhi,68000,7,18,390,36,720,Kalyanpuri Khichripur dense residential
+110092,East Delhi,Delhi,71000,7,21,430,42,780,Very dense Yamuna flood plain proximity
+110093,East Delhi,Delhi,62000,6,17,360,34,680,Loni Road Nand Nagri residential
+110094,North East Delhi,Delhi,68000,6,19,390,38,730,Dense residential prone to waterlogging
+110095,North East Delhi,Delhi,55000,6,17,370,34,690,Dilshad Garden Jhilmil area
+110096,East Delhi,Delhi,52000,6,18,380,36,700,Residential and commercial mix Ghaziabad border
+600001,Chennai,Tamil Nadu,45000,7,20,450,40,750,Chennai GPO Broadway dense commercial
+600002,Chennai,Tamil Nadu,38000,6,18,400,36,680,Anna Road major arterial road
+600003,Chennai,Tamil Nadu,52000,6,17,420,34,720,Park Town Central Station major transit hub
+600004,Chennai,Tamil Nadu,40000,7,19,430,38,730,Mylapore affluent residential cultural hub
+600005,Chennai,Tamil Nadu,48000,6,16,380,32,650,Triplicane dense residential market
+600006,Chennai,Tamil Nadu,35000,6,17,390,34,670,Greams Road hospital district
+600007,Chennai,Tamil Nadu,42000,5,15,350,30,600,Vepery residential and commercial
+600008,Chennai,Tamil Nadu,46000,6,16,370,32,660,Egmore major railway station residential
+600009,Chennai,Tamil Nadu,15000,6,14,320,28,500,Fort St George government high security
+600010,Chennai,Tamil Nadu,41000,6,17,380,34,680,Kilpauk medical college and residential
+600011,Chennai,Tamil Nadu,50000,5,16,360,32,640,Perambur railway workshop and residential
+600012,Chennai,Tamil Nadu,53000,5,15,340,30,610,Perambur Barracks dense residential
+600013,Chennai,Tamil Nadu,58000,6,17,370,34,690,Royapuram fishing harbour dense area
+600014,Chennai,Tamil Nadu,47000,6,18,400,36,710,Royapettah hospital and commercial hub
+600015,Chennai,Tamil Nadu,39000,5,16,360,32,630,Saidapet transport hub and market
+600016,Chennai,Tamil Nadu,28000,6,15,330,30,550,St Thomas Mount military and residential
+600017,Chennai,Tamil Nadu,43000,7,20,440,40,740,T Nagar prime commercial shopping district
+600018,Chennai,Tamil Nadu,37000,7,19,410,38,700,Teynampet affluent residential commercial
+600019,Chennai,Tamil Nadu,45000,6,16,350,32,620,Tiruvottiyur industrial area
+600020,Chennai,Tamil Nadu,36000,6,18,390,36,680,Adyar affluent residential educational hub
+600021,Chennai,Tamil Nadu,55000,5,16,360,32,650,Washermanpet dense commercial residential
+600022,Chennai,Tamil Nadu,18000,5,14,310,28,500,Raj Bhavan high security area
+600023,Chennai,Tamil Nadu,49000,5,15,340,30,600,Ayanavaram residential area
+600024,Chennai,Tamil Nadu,44000,6,17,380,34,690,Kodambakkam film industry hub
+600025,Chennai,Tamil Nadu,25000,6,16,350,32,580,Guindy Engineering College area
+600026,Chennai,Tamil Nadu,46000,6,17,370,34,680,Vadapalani temple and commercial hub
+600027,Chennai,Tamil Nadu,20000,7,18,380,36,600,Meenambakkam airport area high security
+600028,Chennai,Tamil Nadu,34000,6,16,360,32,640,Raja Annamalaipuram affluent residential
+600029,Chennai,Tamil Nadu,43000,5,15,330,30,590,Aminjikarai market and residential
+600030,Chennai,Tamil Nadu,47000,6,16,350,32,630,Shenoy Nagar residential park area
+600031,Chennai,Tamil Nadu,40000,6,17,380,34,670,Chetpet residential and commercial
+600032,Chennai,Tamil Nadu,32000,7,18,390,36,660,Guindy Industrial Estate
+600033,Chennai,Tamil Nadu,51000,6,17,370,34,680,West Mambalam dense residential and commercial
+600034,Chennai,Tamil Nadu,38000,7,19,420,38,720,Nungambakkam affluent commercial and educational hub
+600035,Chennai,Tamil Nadu,36000,6,18,400,36,690,Nandanam commercial and residential
+600036,Chennai,Tamil Nadu,20000,6,16,360,32,570,IIT Madras campus area
+600037,Chennai,Tamil Nadu,39000,5,14,320,28,580,Mogappair residential area
+600038,Chennai,Tamil Nadu,28000,5,13,300,26,500,ICF Colony railway township
+600039,Chennai,Tamil Nadu,54000,5,16,350,32,630,Vyasarpadi dense residential
+600040,Chennai,Tamil Nadu,42000,7,19,410,38,710,Anna Nagar affluent residential area
+600041,Chennai,Tamil Nadu,33000,6,17,370,34,650,Thiruvanmiyur IT corridor and beach
+600042,Chennai,Tamil Nadu,37000,6,16,360,32,640,Velacheri IT hub and residential
+600043,Chennai,Tamil Nadu,30000,5,14,320,28,550,Pallavaram residential area GST road
+600044,Chennai,Tamil Nadu,35000,6,15,340,30,600,Chromepet MIT campus and hospital area
+600045,Chennai,Tamil Nadu,34000,6,16,350,32,610,Tambaram major suburban transit hub
+600049,Chennai,Tamil Nadu,40000,5,15,330,30,590,Villivakkam residential area
+600050,Chennai,Tamil Nadu,38000,6,16,340,32,620,Padi industrial and residential
+600051,Tiruvallur,Tamil Nadu,25000,4,10,250,20,400,Madhavaram Milk Colony
+600053,Tiruvallur,Tamil Nadu,42000,5,14,320,28,550,Ambattur Industrial Estate
+600058,Tiruvallur,Tamil Nadu,40000,6,15,330,30,570,Ambattur Industrial Estate main
+600060,Tiruvallur,Tamil Nadu,38000,5,13,310,26,530,Madhavaram residential and commercial
+600062,Chennai,Tamil Nadu,36000,5,12,290,24,500,Sathyamurthi Nagar residential
+600064,Kanchipuram,Tamil Nadu,33000,5,13,300,26,510,Chitlapakkam residential area
+600065,Tiruvallur,Tamil Nadu,20000,4,10,240,20,380,Avadi CRPF Camp area
+600066,Tiruvallur,Tamil Nadu,29000,4,11,260,22,450,Pozhal residential area
+600068,Tiruvallur,Tamil Nadu,31000,5,12,280,24,490,Manali industrial area
+600078,Chennai,Tamil Nadu,45000,6,17,370,34,670,KK Nagar planned residential township
+600082,Chennai,Tamil Nadu,48000,5,16,350,32,630,Jawahar Nagar Agaram dense residential
+600083,Chennai,Tamil Nadu,46000,6,18,390,36,700,Ashok Nagar commercial and residential hub
+600087,Chennai,Tamil Nadu,39000,6,16,360,32,640,Alwarthirunagar residential
+600092,Chennai,Tamil Nadu,25000,6,15,340,30,550,Koyambedu Wholesale market complex
+600094,Chennai,Tamil Nadu,44000,5,16,350,32,620,Choolaimedu dense residential
+600096,Chennai,Tamil Nadu,30000,5,14,310,28,530,Perungudi IT hub
+600102,Chennai,Tamil Nadu,40000,6,17,380,34,680,Anna Nagar East residential
+600106,Chennai,Tamil Nadu,38000,5,16,360,32,640,Arumbakkam residential and commercial
+600107,Chennai,Tamil Nadu,35000,6,15,340,30,600,Koyambedu bus terminus and market
+600113,Chennai,Tamil Nadu,22000,6,15,350,30,560,Tharamani IT and institutional area
+600116,Chennai,Tamil Nadu,31000,5,13,300,26,520,Porur junction and residential area
+600117,Kanchipuram,Tamil Nadu,29000,4,12,280,24,480,Keelkattalai residential suburb
+600119,Kanchipuram,Tamil Nadu,26000,5,14,310,28,530,Sholinganallur IT corridor
+560001,Bangalore Urban,Karnataka,25000,10,25,600,50,900,Bangalore GPO Vidhana Soudha High Security
+560002,Bangalore Urban,Karnataka,60000,8,22,500,45,850,City Market Chickpet dense commercial hub
+560003,Bangalore Urban,Karnataka,45000,7,18,400,36,700,Malleswaram traditional market residential
+560004,Bangalore Urban,Karnataka,48000,7,19,420,38,720,Basavanagudi traditional residential area
+560005,Bangalore Urban,Karnataka,35000,6,17,380,34,650,Fraser Town residential area
+560006,Bangalore Urban,Karnataka,30000,6,16,360,32,620,JC Nagar Training Command IAF
+560007,Bangalore Urban,Karnataka,28000,6,15,350,30,580,Agram Air Force Hospital area
+560008,Bangalore Urban,Karnataka,38000,7,18,390,36,690,Ulsoor HAL II Stage residential
+560009,Bangalore Urban,Karnataka,42000,6,17,370,34,660,Gandhinagar Majestic bus stand transit hub
+560010,Bangalore Urban,Karnataka,50000,7,19,410,38,730,Rajajinagar industrial and residential
+560011,Bangalore Urban,Karnataka,52000,7,20,430,40,750,Jayanagar 3rd Block commercial and residential
+560012,Bangalore Urban,Karnataka,22000,5,14,320,28,540,Science Institute area
+560013,Bangalore Urban,Karnataka,33000,5,15,330,30,570,Jalahalli HMT industrial area
+560014,Bangalore Urban,Karnataka,31000,4,13,300,26,520,Jalahalli East residential
+560015,Bangalore Urban,Karnataka,29000,4,12,290,24,500,Jalahalli West residential
+560016,Bangalore Urban,Karnataka,40000,6,17,380,34,680,Doorvaninagar Ramamurthy Nagar residential
+560017,Bangalore Urban,Karnataka,34000,6,16,360,32,640,Vimanapura NAL HAL airport area
+560018,Bangalore Urban,Karnataka,47000,6,18,390,36,700,Chamrajpet dense residential
+560019,Bangalore Urban,Karnataka,49000,6,17,380,34,690,Gavipuram Extension residential
+560020,Bangalore Urban,Karnataka,43000,6,16,350,32,630,Seshadripuram college area residential
+560021,Bangalore Urban,Karnataka,46000,6,17,360,32,650,Srirampuram Gayathrinagar residential
+560022,Bangalore Urban,Karnataka,41000,7,18,390,36,700,Yeshwanthpur APMC yard industrial
+560023,Bangalore Urban,Karnataka,44000,6,16,350,32,640,Magadi Road residential commercial
+560024,Bangalore Urban,Karnataka,32000,6,15,340,30,600,Hebbal Kempapura IT park area
+560025,Bangalore Urban,Karnataka,36000,7,18,400,36,680,Richmond Town Austin Town residential
+560026,Bangalore Urban,Karnataka,55000,6,17,370,34,690,Byatarayanapura residential commercial
+560027,Bangalore Urban,Karnataka,40000,6,17,380,34,670,Shantinagar Wilson Garden residential
+560028,Bangalore Urban,Karnataka,48000,6,16,360,32,650,Thyagarajanagar residential
+560029,Bangalore Urban,Karnataka,39000,7,18,400,36,700,Dharmaram College BTM Layout area
+560030,Bangalore Urban,Karnataka,42000,6,17,390,36,690,Adugodi residential police quarters
+560031,Bangalore Urban,Karnataka,25000,5,13,310,26,530,HMT industrial area
+560032,Bangalore Urban,Karnataka,38000,6,16,370,32,640,RT Nagar residential
+560033,Bangalore Urban,Karnataka,41000,6,16,360,32,650,Maruthi Sevanagar residential
+560034,Bangalore Urban,Karnataka,45000,8,21,460,42,780,Koramangala affluent residential commercial hub
+560035,Bangalore Rural,Karnataka,28000,5,14,320,28,550,Carmelram suburban area
+560036,Bangalore Urban,Karnataka,43000,7,18,390,36,700,Krishnarajapuram major transit hub
+560037,Bangalore Urban,Karnataka,48000,7,19,420,38,740,Marathahalli Colony IT corridor
+560038,Bangalore Urban,Karnataka,39000,7,20,430,40,750,Indiranagar upscale residential and commercial
+560040,Bangalore Urban,Karnataka,46000,6,18,390,36,690,Vijayanagar residential area
+560041,Bangalore Urban,Karnataka,53000,7,21,450,42,780,Jayanagar South dense residential commercial
+560042,Bangalore Urban,Karnataka,37000,5,16,350,30,620,Sivan Chetty Gardens residential
+560043,Bangalore Urban,Karnataka,40000,6,18,390,36,680,Banaswadi Kalyananagar residential
+560044,Bangalore Urban,Karnataka,35000,6,15,340,30,600,Industrial Estate residential
+560045,Bangalore Urban,Karnataka,44000,6,17,370,34,660,Arabic College Nagawara area
+560046,Bangalore Urban,Karnataka,36000,5,16,360,32,630,Benson Town residential
+560047,Bangalore Urban,Karnataka,41000,6,17,380,34,670,Viveknagar Austin Town residential
+560048,Bangalore Urban,Karnataka,39000,7,19,410,38,720,Mahadevapura IT hub industrial area
+560049,Bangalore Urban,Karnataka,33000,6,15,340,30,590,Virgonagar Bidrahalli developing area
+560050,Bangalore Urban,Karnataka,51000,6,18,390,36,700,Banashankari temple and dense residential
+560051,Bangalore Urban,Karnataka,58000,7,20,420,40,740,Shivaji Nagar dense market area
+560052,Bangalore Urban,Karnataka,34000,6,16,370,32,650,Vasanthanagar High Grounds area
+560053,Bangalore Urban,Karnataka,62000,7,20,440,40,770,Chickpet Balepete wholesale market hub
+560054,Bangalore Urban,Karnataka,35000,6,15,350,30,620,Mathikere Gokula Extension residential
+560055,Bangalore Urban,Karnataka,42000,6,17,380,34,670,Malleswaram West residential
+560056,Bangalore Urban,Karnataka,20000,5,14,320,28,530,Bangalore University campus
+560057,Bangalore Urban,Karnataka,38000,5,15,330,30,590,Dasarahalli residential
+560058,Bangalore Urban,Karnataka,40000,7,18,400,36,700,Peenya Industrial Area major industrial hub
+560059,Bangalore Urban,Karnataka,28000,5,14,310,28,540,RV Niketan educational area
+560060,Bangalore Urban,Karnataka,37000,6,16,360,32,630,Kengeri satellite town transit hub
+560061,Bangalore Urban,Karnataka,43000,6,17,370,34,650,Subramanyapura residential
+560062,Bangalore Urban,Karnataka,39000,5,15,340,30,600,Doddakallasandra residential Kanakapura Road
+560063,Bangalore Urban,Karnataka,22000,6,15,330,30,550,AF Station Yelahanka high security
+560064,Bangalore Urban,Karnataka,30000,6,14,320,28,560,Yelahanka residential industrial
+560065,Bangalore Urban,Karnataka,24000,5,13,300,26,510,GKVK agricultural university campus
+560066,Bangalore Urban,Karnataka,38000,8,22,480,45,800,Whitefield major IT and residential hub
+560067,Bangalore Urban,Karnataka,32000,6,15,350,30,600,Kadugodi residential and industrial
+560068,Bangalore Urban,Karnataka,47000,7,19,410,38,720,Bommanahalli Hongasandra industrial residential
+560069,Bangalore Urban,Karnataka,49000,6,18,400,36,710,Jayanagar East residential
+560070,Bangalore Urban,Karnataka,46000,7,19,420,38,730,Banashankari II Stage residential
+560071,Bangalore Urban,Karnataka,36000,6,17,380,34,670,Domlur residential and commercial
+560072,Bangalore Urban,Karnataka,41000,6,16,360,32,650,Nagarbhavi residential area
+560073,Bangalore Urban,Karnataka,33000,5,14,320,28,570,Nagasandra Bagalgunte industrial residential
+560074,Bangalore Rural,Karnataka,20000,4,10,250,20,400,Kumbalgodu industrial area
+560075,Bangalore Urban,Karnataka,37000,6,16,370,32,640,Jeevanbhimanagar New Thippasandra residential
+560076,Bangalore Urban,Karnataka,44000,7,18,400,36,710,Bannerghatta Road commercial and hospitals
+560077,Bangalore Urban,Karnataka,35000,6,15,340,30,610,Kothanur Hegde Nagar residential
+560078,Bangalore Urban,Karnataka,48000,7,20,440,40,760,JP Nagar residential and commercial hub
+560079,Bangalore Urban,Karnataka,47000,7,19,410,38,720,Basaveshwaranagar residential
+560080,Bangalore Urban,Karnataka,32000,6,16,380,34,660,Sadashivanagar affluent residential
+560081,Bangalore Urban,Karnataka,27000,5,14,310,28,530,Chandapura developing residential area
+560082,Bangalore Rural,Karnataka,25000,4,12,280,24,480,Kanakapura Road developing area
+560083,Bangalore Rural,Karnataka,23000,4,11,270,22,460,Bannerghatta National Park area
+560084,Bangalore Urban,Karnataka,40000,6,17,380,34,670,Lingarajapuram St Thomas Town residential
+560085,Bangalore Urban,Karnataka,45000,6,18,400,36,700,Banashankari III Stage Girinagar residential
+560086,Bangalore Urban,Karnataka,43000,6,17,380,34,680,Mahalakshmi Layout residential
+560087,Bangalore Urban,Karnataka,36000,6,16,370,32,650,Varthur Gunjur IT corridor
+560088,Bangalore Rural,Karnataka,21000,4,10,240,20,390,Hesaraghatta rural and institutional area
+560089,Bangalore Rural,Karnataka,15000,3,8,200,16,330,Hesaraghatta Lake area
+560090,Bangalore Urban,Karnataka,28000,5,13,300,26,510,Chikkabanavara residential
+560091,Bangalore Urban,Karnataka,26000,4,12,280,24,490,Viswaneedam industrial area
+560092,Bangalore Urban,Karnataka,34000,6,15,350,30,620,Byatarayanapura Sahakaranagar residential
+560093,Bangalore Urban,Karnataka,31000,6,16,370,32,640,CV Raman Nagar DRDO area
+560094,Bangalore Urban,Karnataka,33000,6,16,380,34,660,RMV Extension II Stage residential
+560095,Bangalore Urban,Karnataka,42000,7,19,420,38,730,Koramangala 6th Block commercial
+560096,Bangalore Urban,Karnataka,39000,6,16,360,32,650,Nandhini Layout residential
+560097,Bangalore Urban,Karnataka,37000,5,15,340,30,610,Vidyaranyapura residential
+560100,Bangalore Urban,Karnataka,35000,8,20,450,40,780,Electronics City Phase 1 major IT hub
+560102,Bangalore Urban,Karnataka,36000,7,18,410,36,720,HSR Layout planned residential hub
+560103,Bangalore Urban,Karnataka,34000,7,17,390,34,690,Bellandur IT hub and residential
+560104,Bangalore Urban,Karnataka,42000,6,17,380,34,680,Hampinagar residential
+560105,Bangalore Urban,Karnataka,30000,6,16,370,32,650,Electronics City Phase 2
+560108,Bangalore Urban,Karnataka,31000,5,14,320,28,560,Anjanapura residential layout
+562110,Bangalore Rural,Karnataka,18000,7,16,350,30,550,Devanahalli International Airport area
+562125,Bangalore Rural,Karnataka,19000,4,10,230,20,380,Sarjapur suburban town
