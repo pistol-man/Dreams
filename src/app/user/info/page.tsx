@@ -10,37 +10,61 @@ import { generateResponse, searchSchemes, type ChatMessage } from '@/lib/gemini'
 import { useToast } from '@/hooks/use-toast';
 import UserLayout from '@/components/custom/layout/user-layout';
 
-// Individual government services with working links
+// Individual government services with working links from official sources
 const GOVERNMENT_SERVICES = [
   {
-    title: "181 Women Helpline - 24/7 Support",
-    description: "National toll-free helpline for women in distress. Provides immediate assistance, counseling, and emergency response coordination.",
-    eligibility: "All women and girls in distress",
-    link: "https://wcd.nic.in/schemes/women-helpline-scheme",
+    title: "181 Women Helpline - 24/7 Emergency Support",
+    description: "National toll-free helpline operational since December 3, 2018. Provides 24-hour immediate and emergency response to women affected by violence through referral to Police, One Stop Centres, Hospitals, and Legal aid through DLSA.",
+    eligibility: "All women affected by violence in public and private spaces",
+    link: "https://wcdhry.gov.in/women-helpline-number-181/",
     category: "Emergency Support",
     icon: "🚨"
   },
   {
-    title: "181 Helpline - Emergency Response",
-    description: "Immediate police response, medical assistance, and legal support coordination for women facing violence or harassment.",
-    eligibility: "Women in emergency situations",
-    link: "https://wcd.nic.in/schemes/women-helpline-scheme",
+    title: "181 Helpline - Integrated Support Services",
+    description: "Provides integrated support and assistance to women affected by violence under one roof. Staff stays with caller till problem reaches logical conclusion with daily and weekly feedback.",
+    eligibility: "Women affected by violence requiring comprehensive support",
+    link: "https://wcdhry.gov.in/women-helpline-number-181/",
+    category: "Emergency Support",
+    icon: "🛡️"
+  },
+  {
+    title: "181 Helpline - Government Schemes Information",
+    description: "Provides information about women-related government schemes and programs across the country through a single uniform number. Reduces mortality, morbidity, malnutrition and school dropouts.",
+    eligibility: "All women seeking government scheme information",
+    link: "https://wcdhry.gov.in/women-helpline-number-181/",
+    category: "Information Services",
+    icon: "📋"
+  },
+  {
+    title: "181 Helpline - Specialized Crime Support",
+    description: "Staff specialized in crime against women with M.S.W/L.L.M qualifications and vast experience in dealing with women-related issues. Gender-sensitive approach to every call.",
+    eligibility: "Women facing crime-related issues",
+    link: "https://wcdhry.gov.in/women-helpline-number-181/",
+    category: "Legal Aid",
+    icon: "⚖️"
+  },
+  {
+    title: "181 Helpline - Police Referral Services",
+    description: "Direct referral to Police for immediate action in cases of violence against women. Ensures prompt response and follow-up till logical conclusion.",
+    eligibility: "Women requiring police intervention",
+    link: "https://wcdhry.gov.in/women-helpline-number-181/",
     category: "Emergency Support",
     icon: "🚔"
   },
   {
-    title: "181 Helpline - Counseling Services",
-    description: "Professional psychological counseling and emotional support for women dealing with domestic violence, harassment, or trauma.",
-    eligibility: "Women seeking emotional support",
-    link: "https://wcd.nic.in/schemes/women-helpline-scheme",
-    category: "Mental Health",
-    icon: "💚"
+    title: "181 Helpline - Hospital Referral Services",
+    description: "Immediate referral to hospitals for medical examination and treatment of women affected by violence. Ensures proper medical documentation.",
+    eligibility: "Women requiring medical attention",
+    link: "https://wcdhry.gov.in/women-helpline-number-181/",
+    category: "Healthcare",
+    icon: "🏥"
   },
   {
-    title: "181 Helpline - Legal Guidance",
-    description: "Free legal advice, information about women's rights, and assistance in filing police complaints or legal cases.",
-    eligibility: "Women seeking legal assistance",
-    link: "https://wcd.nic.in/schemes/women-helpline-scheme",
+    title: "181 Helpline - Legal Aid Referral",
+    description: "Referral to District Legal Services Authority (DLSA) for free legal aid and representation. Ensures access to justice for all women.",
+    eligibility: "Women requiring legal assistance",
+    link: "https://wcdhry.gov.in/women-helpline-number-181/",
     category: "Legal Aid",
     icon: "⚖️"
   },
@@ -48,15 +72,31 @@ const GOVERNMENT_SERVICES = [
     title: "One Stop Centre - Sakhi",
     description: "Integrated support centers providing medical, legal, psychological, and temporary shelter assistance under one roof.",
     eligibility: "Women affected by violence",
-    link: "https://wcd.nic.in/schemes/one-stop-centre-scheme-1",
+    link: "https://wcd.gov.in/schemes/one-stop-centre-scheme-1",
     category: "Integrated Support",
     icon: "🏠"
+  },
+  {
+    title: "181 Helpline - Follow-up Services",
+    description: "Daily and weekly follow-up with callers till problem reaches logical conclusion. Ensures continuous support and monitoring of case progress.",
+    eligibility: "Women who have contacted 181 helpline",
+    link: "https://wcdhry.gov.in/women-helpline-number-181/",
+    category: "Support Services",
+    icon: "📞"
+  },
+  {
+    title: "181 Helpline - Gender-Sensitive Approach",
+    description: "All staff members are women with M.S.W/L.L.M qualifications and vast experience in dealing with women-related issues. Gender-sensitive handling of every case.",
+    eligibility: "All women seeking support",
+    link: "https://wcdhry.gov.in/women-helpline-number-181/",
+    category: "Support Services",
+    icon: "👩‍💼"
   },
   {
     title: "OSC - Medical Assistance",
     description: "Immediate medical examination, first aid, and referral to hospitals for women victims of violence.",
     eligibility: "Women requiring medical attention",
-    link: "https://wcd.nic.in/schemes/one-stop-centre-scheme-1",
+    link: "https://wcd.gov.in/schemes/one-stop-centre-scheme-1",
     category: "Healthcare",
     icon: "🏥"
   },
@@ -64,7 +104,7 @@ const GOVERNMENT_SERVICES = [
     title: "OSC - Temporary Shelter",
     description: "Safe temporary accommodation for women and their children who need immediate protection from violence.",
     eligibility: "Women needing emergency shelter",
-    link: "https://wcd.nic.in/schemes/one-stop-centre-scheme-1",
+    link: "https://wcd.gov.in/schemes/one-stop-centre-scheme-1",
     category: "Shelter",
     icon: "🏡"
   },
@@ -80,7 +120,7 @@ const GOVERNMENT_SERVICES = [
     title: "Protection of Women from Domestic Violence Act",
     description: "Legal protection orders, maintenance, custody, and residence rights for women facing domestic violence.",
     eligibility: "Women in domestic violence situations",
-    link: "https://wcd.nic.in/acts/protection-women-domestic-violence-act-2005",
+    link: "https://wcd.gov.in/acts/protection-women-domestic-violence-act-2005",
     category: "Legal Protection",
     icon: "🛡️"
   },
@@ -88,7 +128,7 @@ const GOVERNMENT_SERVICES = [
     title: "Dowry Prohibition Act Support",
     description: "Legal assistance and protection for women facing dowry harassment and related crimes.",
     eligibility: "Women facing dowry-related issues",
-    link: "https://wcd.nic.in/acts/dowry-prohibition-act-1961",
+    link: "https://wcd.gov.in/acts/dowry-prohibition-act-1961",
     category: "Legal Protection",
     icon: "🚫"
   },
@@ -96,7 +136,7 @@ const GOVERNMENT_SERVICES = [
     title: "Beti Bachao Beti Padhao",
     description: "Financial incentives and support for girl child education, health, and overall development.",
     eligibility: "Families with girl children",
-    link: "https://wcd.nic.in/schemes/beti-bachao-beti-padhao-bbbp",
+    link: "https://wcd.gov.in/schemes/beti-bachao-beti-padhao-bbbp",
     category: "Financial Support",
     icon: "👧"
   },
@@ -112,7 +152,7 @@ const GOVERNMENT_SERVICES = [
     title: "Pradhan Mantri Matru Vandana Yojana",
     description: "Cash benefit for pregnant and lactating mothers for improved health and nutrition.",
     eligibility: "Pregnant and lactating mothers",
-    link: "https://wcd.nic.in/schemes/pradhan-mantri-matru-vandana-yojana",
+    link: "https://wcd.gov.in/schemes/pradhan-mantri-matru-vandana-yojana",
     category: "Financial Support",
     icon: "🤱"
   },
@@ -120,7 +160,7 @@ const GOVERNMENT_SERVICES = [
     title: "Mahila Shakti Kendra",
     description: "Skill development and employment opportunities for rural women through training and support.",
     eligibility: "Rural women seeking employment",
-    link: "https://wcd.nic.in/schemes/mahila-shakti-kendra-msk",
+    link: "https://wcd.gov.in/schemes/mahila-shakti-kendra-msk",
     category: "Employment",
     icon: "💼"
   },
@@ -128,7 +168,7 @@ const GOVERNMENT_SERVICES = [
     title: "Support to Training and Employment Programme (STEP)",
     description: "Skill development training for women in traditional and non-traditional sectors.",
     eligibility: "Women aged 16 and above",
-    link: "https://wcd.nic.in/schemes/support-training-and-employment-programme-women-step",
+    link: "https://wcd.gov.in/schemes/support-training-and-employment-programme-women-step",
     category: "Employment",
     icon: "🎓"
   },
@@ -136,7 +176,7 @@ const GOVERNMENT_SERVICES = [
     title: "Working Women Hostel",
     description: "Safe and affordable accommodation for working women in urban and semi-urban areas.",
     eligibility: "Working women needing accommodation",
-    link: "https://wcd.nic.in/schemes/working-women-hostel-scheme",
+    link: "https://wcd.gov.in/schemes/working-women-hostel-scheme",
     category: "Accommodation",
     icon: "🏢"
   },
@@ -281,7 +321,7 @@ const InfoPage = () => {
     if (messages.length === 0) {
       setMessages([{
         role: 'system',
-        content: 'Hello! I am your AI assistant. I can help you with information about government schemes and women\'s safety programs. I have detailed information about the 181 Women Helpline, One Stop Centres, legal aid, financial support schemes, and digital safety resources. The 181 helpline is a 24/7 toll-free service for women in distress providing emergency response, counseling, and legal guidance. What would you like to know about these services?'
+        content: 'Hello! I am your AI assistant. I can help you with information about government schemes and women\'s safety programs. I have detailed information about the 181 Women Helpline (operational since December 3, 2018), One Stop Centres, legal aid, financial support schemes, and digital safety resources. The 181 helpline is a 24/7 toll-free service that provides immediate emergency response, police referral, hospital referral, legal aid through DLSA, and government scheme information. All staff are women with M.S.W/L.L.M qualifications. What would you like to know about these services?'
       }]);
     }
   }, []);
@@ -296,6 +336,54 @@ const InfoPage = () => {
           </TabsList>
 
           <TabsContent value="schemes" className="space-y-4 mt-4">
+            {/* 181 Helpline Prominent Section */}
+            <Card className="border-2 border-red-200 bg-red-50 dark:bg-red-950/20">
+              <CardHeader className="pb-3">
+                <CardTitle className="text-xl flex items-center gap-3 text-red-700 dark:text-red-300">
+                  <span className="text-3xl">🚨</span>
+                  <div>
+                    <div className="text-2xl font-bold">181 Women Helpline</div>
+                    <div className="text-sm font-normal text-red-600 dark:text-red-400">
+                      National Toll-Free Emergency Support • Operational since December 3, 2018
+                    </div>
+                  </div>
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-3">
+                <div className="grid gap-3 md:grid-cols-2">
+                  <div className="space-y-2">
+                    <h4 className="font-semibold text-red-700 dark:text-red-300">Key Features:</h4>
+                    <ul className="text-sm space-y-1 text-red-600 dark:text-red-400">
+                      <li>• 24/7 Emergency Response</li>
+                      <li>• Police Referral Services</li>
+                      <li>• Hospital Referral Services</li>
+                      <li>• Legal Aid through DLSA</li>
+                      <li>• Government Scheme Information</li>
+                      <li>• All Women Staff (M.S.W/L.L.M qualified)</li>
+                    </ul>
+                  </div>
+                  <div className="space-y-2">
+                    <h4 className="font-semibold text-red-700 dark:text-red-300">Contact Information:</h4>
+                    <div className="text-sm space-y-1 text-red-600 dark:text-red-400">
+                      <div>📞 <strong>Toll-Free:</strong> 181</div>
+                      <div>🌐 <strong>Website:</strong> 
+                        <a 
+                          href="https://wcdhry.gov.in/women-helpline-number-181/" 
+                          target="_blank" 
+                          rel="noopener noreferrer"
+                          className="text-blue-600 hover:underline ml-1"
+                        >
+                          Official Portal
+                        </a>
+                      </div>
+                      <div>⏰ <strong>Availability:</strong> 24/7</div>
+                      <div>👥 <strong>Eligibility:</strong> All women affected by violence</div>
+                    </div>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
             <div className="flex flex-col gap-4">
               <div className="flex gap-2">
                 <Input
