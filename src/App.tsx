@@ -7,7 +7,7 @@ import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import UserPage from "./app/user/page";
 import UserMapPage from "./app/user/map/page";
-import UserInfoPage from "./app/user/info/page";
+import InfoPage from "./app/user/map/info/page";
 import LoginPage from "./app/login/page";
 import AdminPage from "./app/admin/page";
 import ContactPage from "./app/contact/page";
@@ -26,7 +26,7 @@ const App = () => (
           <Route path="/" element={<Index />} />
           <Route path="/user" element={<UserPage />} />
           <Route path="/user/map" element={<UserMapPage />} />
-          <Route path="/user/info" element={<UserInfoPage />} />
+          <Route path="/user/info" element={<InfoPage />} />
           <Route path="/user/community" element={<CommunityPage />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/admin" element={<AdminPage />} />

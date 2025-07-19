@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
@@ -96,6 +96,12 @@ const UserDashboard = () => {
   const [isSafeModeEnabled, setIsSafeModeEnabled] = useState(false);
   const [isSOSActive, setIsSOSActive] = useState(false);
   const [showCamera, setShowCamera] = useState(false);
+  const [transcript, setTranscript] = useState("");
+  const recognitionRef = useRef<any>(null);
+  const transcriptRef = useRef(""); // NEW: accumulate transcript
+  const [isSpeaking, setIsSpeaking] = useState(false); // NEW: for voice activity
+  const [speechError, setSpeechError] = useState(""); // NEW: for error feedback
+  const speechTimeoutRef = useRef<NodeJS.Timeout | null>(null); // NEW: for no speech detection
 
   const { enableCamera, disableCamera, videoRef, error: cameraError, stream } = useCamera();
   const { 
@@ -158,6 +164,11 @@ const UserDashboard = () => {
 
   const activateSOS = async () => {
     setIsSOSActive(true);
+    transcriptRef.current = ""; // Reset transcript
+    setTranscript("");
+    setIsSpeaking(false);
+    setSpeechError("");
+    if (speechTimeoutRef.current) clearTimeout(speechTimeoutRef.current);
 
     // Start the alarm sound
     EmergencyAlarm.start();
@@ -198,6 +209,81 @@ const UserDashboard = () => {
       });
     }
 
+    // Start speech recognition
+    if ("webkitSpeechRecognition" in window || "SpeechRecognition" in window) {
+      const SpeechRecognition = (window as any).SpeechRecognition || (window as any).webkitSpeechRecognition;
+      const recognition = new SpeechRecognition();
+      recognition.continuous = true;
+      recognition.interimResults = true;
+      recognition.lang = "en-IN";
+      let lastTranscript = "";
+      recognition.onresult = (event: any) => {
+        let interimTranscript = "";
+        let hasSpeech = false;
+        for (let i = event.resultIndex; i < event.results.length; ++i) {
+          if (event.results[i].isFinal) {
+            transcriptRef.current += event.results[i][0].transcript;
+            hasSpeech = true;
+          } else {
+            interimTranscript += event.results[i][0].transcript;
+            if (event.results[i][0].transcript.trim() !== "") hasSpeech = true;
+          }
+        }
+        setTranscript(transcriptRef.current + interimTranscript);
+        setIsSpeaking(hasSpeech);
+        lastTranscript = transcriptRef.current + interimTranscript;
+        if (hasSpeech && speechTimeoutRef.current) {
+          clearTimeout(speechTimeoutRef.current);
+        }
+      };
+      recognition.onspeechstart = () => {
+        setIsSpeaking(true);
+        if (speechTimeoutRef.current) clearTimeout(speechTimeoutRef.current);
+      };
+      recognition.onspeechend = () => setIsSpeaking(false);
+      recognition.onerror = (event: any) => {
+        setIsSpeaking(false);
+        setSpeechError(event.error || "Speech recognition error");
+        toast({
+          title: "Speech Recognition Error",
+          description: event.error === 'not-allowed' ? "Microphone permission denied. Please allow access in your browser settings." : (event.error || "Speech recognition error occurred."),
+          variant: "destructive",
+          duration: 8000,
+        });
+        console.error("SpeechRecognition error:", event);
+      };
+      recognition.onend = () => {
+        setIsSpeaking(false);
+        if (isSOSActive) {
+          try { recognition.start(); } catch (e) { /* ignore */ }
+        }
+      };
+      recognitionRef.current = recognition;
+      recognition.start();
+      // If no speech detected in 5 seconds, show a toast
+      speechTimeoutRef.current = setTimeout(() => {
+        if (!isSpeaking) {
+          setSpeechError("No speech detected. Please check your microphone and permissions.");
+          toast({
+            title: "No Speech Detected",
+            description: "Please check your microphone and browser permissions.",
+            variant: "destructive",
+            duration: 8000,
+          });
+        }
+      }, 5000);
+    } else {
+      setTranscript("Speech recognition not supported in this browser.");
+      setIsSpeaking(false);
+      setSpeechError("Speech recognition not supported in this browser.");
+      toast({
+        title: "Speech Recognition Not Supported",
+        description: "Your browser does not support the Web Speech API. Please use Chrome or Edge.",
+        variant: "destructive",
+        duration: 8000,
+      });
+    }
+
     // Notify emergency contacts
     trustedContacts.forEach(contact => {
       toast({
@@ -229,6 +315,17 @@ const UserDashboard = () => {
     disableCamera();
     // Stop the alarm sound
     EmergencyAlarm.stop();
+    // Stop speech recognition
+    if (recognitionRef.current) {
+      recognitionRef.current.onend = null;
+      recognitionRef.current.stop();
+      recognitionRef.current = null;
+    }
+    transcriptRef.current = "";
+    setTranscript("");
+    setIsSpeaking(false);
+    setSpeechError("");
+    if (speechTimeoutRef.current) clearTimeout(speechTimeoutRef.current);
     toast({
       title: "SOS Deactivated",
       description: "Emergency mode has been turned off",
@@ -351,6 +448,15 @@ const UserDashboard = () => {
     return () => {
       disableShake();
       disableCamera();
+      if (recognitionRef.current) {
+        recognitionRef.current.onend = null;
+        recognitionRef.current.stop();
+        recognitionRef.current = null;
+      }
+      transcriptRef.current = "";
+      setIsSpeaking(false);
+      setSpeechError("");
+      if (speechTimeoutRef.current) clearTimeout(speechTimeoutRef.current);
       const alertBadge = document.getElementById('shake-alert');
       if (alertBadge) {
         alertBadge.remove();
@@ -906,7 +1012,34 @@ const UserDashboard = () => {
               <AlertTriangle className="h-16 w-16 mx-auto animate-pulse" />
               <h2 className="text-3xl font-bold">SOS ACTIVATED</h2>
               <p className="text-lg mb-4">Emergency services have been notified</p>
-              
+              {/* Live Transcript Section */}
+              <div className="bg-black/60 rounded-lg p-4 mb-4 max-h-40 overflow-y-auto text-left relative">
+                <h4 className="font-semibold text-white mb-2 flex items-center gap-2">
+                  Live Transcript:
+                  {/* Voice Recording Indicator */}
+                  <span className="ml-2">
+                    {isSpeaking ? (
+                      <span className="inline-flex items-center">
+                        <svg className="animate-pulse h-5 w-5 text-green-400" fill="currentColor" viewBox="0 0 20 20">
+                          <path d="M10 2a2 2 0 00-2 2v6a2 2 0 104 0V4a2 2 0 00-2-2zm-6 8a1 1 0 011 1v1a7 7 0 0014 0v-1a1 1 0 112 0v1a9 9 0 01-18 0v-1a1 1 0 012 0z" />
+                        </svg>
+                        <span className="ml-1 text-green-400 text-xs font-semibold animate-pulse">Listening...</span>
+                      </span>
+                    ) : (
+                      <span className="inline-flex items-center">
+                        <svg className="h-5 w-5 text-gray-400" fill="currentColor" viewBox="0 0 20 20">
+                          <path d="M10 2a2 2 0 00-2 2v6a2 2 0 104 0V4a2 2 0 00-2-2zm-6 8a1 1 0 011 1v1a7 7 0 0014 0v-1a1 1 0 112 0v1a9 9 0 01-18 0v-1a1 1 0 012 0z" />
+                        </svg>
+                        <span className="ml-1 text-gray-400 text-xs font-semibold">Silent</span>
+                      </span>
+                    )}
+                  </span>
+                </h4>
+                <p className="whitespace-pre-line text-white text-sm min-h-[2rem]">{transcript || "Say something..."}</p>
+                {speechError && (
+                  <div className="mt-2 text-xs text-red-400 font-semibold">{speechError}</div>
+                )}
+              </div>
               <div className="grid grid-cols-2 gap-4 mb-6">
                 <Button
                   variant="outline"
@@ -949,7 +1082,6 @@ const UserDashboard = () => {
                   Call 112
                 </Button>
               </div>
-
               <div className="space-y-2">
                 <Button
                   variant="outline"
