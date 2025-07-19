@@ -92,6 +92,7 @@ const RealMap = ({ center, city }: { center: [number, number], city: 'mumbai' | 
   );
 };
 
+type AlertCategory = 'Harassment' | 'Violence' | 'Exploitation' | 'Emergency' | 'Counseling';
 interface RealTimeAlert {
   id: string
   userId: string
@@ -101,6 +102,7 @@ interface RealTimeAlert {
   status: "pending" | "dispatched" | "resolved"
   priority: "high" | "medium" | "low"
   city: "mumbai" | "pune" | "bangalore"
+  category: AlertCategory
 }
 
 interface LoginCredentials {
@@ -118,12 +120,17 @@ interface OfficerProfile {
   responseRate: number
 }
 
+const ALERT_CATEGORIES: AlertCategory[] = [
+  'Harassment', 'Violence', 'Exploitation', 'Emergency', 'Counseling'
+];
+
 const AdminDashboard = () => {
   const { toast } = useToast()
   const [currentLocation, setCurrentLocation] = useState<"mumbai" | "pune" | "bangalore">("mumbai")
   const [isLoginOpen, setIsLoginOpen] = useState(false)
   const [loginForm, setLoginForm] = useState<LoginCredentials>({ username: "", password: "" })
   const [isLoggingIn, setIsLoggingIn] = useState(false)
+  const [selectedCategory, setSelectedCategory] = useState<AlertCategory | 'All'>('All');
 
   const officerProfiles: Record<"mumbai" | "pune" | "bangalore", OfficerProfile> = {
     mumbai: {
@@ -166,6 +173,7 @@ const AdminDashboard = () => {
       status: "pending",
       priority: "high",
       city: "mumbai",
+      category: "Harassment",
     },
     {
       id: "SOS-002",
@@ -176,6 +184,7 @@ const AdminDashboard = () => {
       status: "dispatched",
       priority: "high",
       city: "mumbai",
+      category: "Violence",
     },
     {
       id: "SOS-003",
@@ -186,6 +195,7 @@ const AdminDashboard = () => {
       status: "pending",
       priority: "medium",
       city: "mumbai",
+      category: "Exploitation",
     },
     {
       id: "SOS-004",
@@ -196,6 +206,7 @@ const AdminDashboard = () => {
       status: "dispatched",
       priority: "high",
       city: "mumbai",
+      category: "Emergency",
     },
     {
       id: "SOS-005",
@@ -206,6 +217,7 @@ const AdminDashboard = () => {
       status: "pending",
       priority: "medium",
       city: "mumbai",
+      category: "Counseling",
     },
     // Pune alerts
     {
@@ -217,6 +229,7 @@ const AdminDashboard = () => {
       status: "pending",
       priority: "high",
       city: "pune",
+      category: "Harassment",
     },
     {
       id: "SOS-007",
@@ -227,6 +240,7 @@ const AdminDashboard = () => {
       status: "dispatched",
       priority: "medium",
       city: "pune",
+      category: "Violence",
     },
     {
       id: "SOS-008",
@@ -237,6 +251,7 @@ const AdminDashboard = () => {
       status: "pending",
       priority: "high",
       city: "pune",
+      category: "Exploitation",
     },
     {
       id: "SOS-009",
@@ -247,6 +262,7 @@ const AdminDashboard = () => {
       status: "dispatched",
       priority: "low",
       city: "pune",
+      category: "Emergency",
     },
     // Bangalore alerts
     {
@@ -258,6 +274,7 @@ const AdminDashboard = () => {
       status: "pending",
       priority: "high",
       city: "bangalore",
+      category: "Harassment",
     },
     {
       id: "SOS-011",
@@ -268,6 +285,7 @@ const AdminDashboard = () => {
       status: "dispatched",
       priority: "medium",
       city: "bangalore",
+      category: "Violence",
     },
     {
       id: "SOS-012",
@@ -278,6 +296,7 @@ const AdminDashboard = () => {
       status: "pending",
       priority: "high",
       city: "bangalore",
+      category: "Exploitation",
     },
     {
       id: "SOS-013",
@@ -288,6 +307,7 @@ const AdminDashboard = () => {
       status: "pending",
       priority: "medium",
       city: "bangalore",
+      category: "Emergency",
     },
     {
       id: "SOS-014",
@@ -298,6 +318,7 @@ const AdminDashboard = () => {
       status: "dispatched",
       priority: "low",
       city: "bangalore",
+      category: "Counseling",
     },
     {
       id: "SOS-015",
@@ -308,11 +329,15 @@ const AdminDashboard = () => {
       status: "pending",
       priority: "high",
       city: "bangalore",
+      category: "Harassment",
     },
   ])
 
   const currentOfficer = officerProfiles[currentLocation]
-  const filteredAlerts = realTimeAlerts.filter((alert) => alert.city === currentLocation)
+  const filteredAlerts = realTimeAlerts.filter((alert) =>
+    alert.city === currentLocation &&
+    (selectedCategory === 'All' || alert.category === selectedCategory)
+  );
 
   const handleLogin = async () => {
     setIsLoggingIn(true)
@@ -542,10 +567,22 @@ const AdminDashboard = () => {
                 Real-Time SOS Alerts - {currentLocation.charAt(0).toUpperCase() + currentLocation.slice(1)} (
                 {filteredAlerts.length})
               </CardTitle>
-              <Badge variant="secondary" className="bg-red-100 text-red-700">
-                <AlertTriangle className="w-4 h-4 mr-2" />
-                Live Alerts
-              </Badge>
+              <div className="flex items-center gap-4">
+                <select
+                  className="rounded border px-2 py-1 text-sm bg-white dark:bg-slate-900 text-black dark:text-white"
+                  value={selectedCategory}
+                  onChange={e => setSelectedCategory(e.target.value as AlertCategory | 'All')}
+                >
+                  <option value="All">All Categories</option>
+                  {ALERT_CATEGORIES.map(cat => (
+                    <option key={cat} value={cat}>{cat}</option>
+                  ))}
+                </select>
+                <Badge variant="secondary" className="bg-red-100 text-red-700">
+                  <AlertTriangle className="w-4 h-4 mr-2" />
+                  Live Alerts
+                </Badge>
+              </div>
             </div>
           </CardHeader>
           <CardContent>
@@ -558,6 +595,7 @@ const AdminDashboard = () => {
                     <TableHead>Location</TableHead>
                     <TableHead>Time</TableHead>
                     <TableHead>ETA</TableHead>
+                    <TableHead>Category</TableHead>
                     <TableHead>Status</TableHead>
                     <TableHead>Action</TableHead>
                   </TableRow>
@@ -588,6 +626,17 @@ const AdminDashboard = () => {
                           >
                             <Clock className="w-3 h-3 mr-1" />
                             {alert.eta || "Calculating..."}
+                          </Badge>
+                        </TableCell>
+                        <TableCell>
+                          <Badge variant="outline" className={cn("rounded-full px-2 py-1 text-xs",
+                            alert.category === 'Violence' && 'bg-red-200 text-red-800',
+                            alert.category === 'Harassment' && 'bg-yellow-100 text-yellow-800',
+                            alert.category === 'Exploitation' && 'bg-purple-100 text-purple-800',
+                            alert.category === 'Emergency' && 'bg-blue-100 text-blue-800',
+                            alert.category === 'Counseling' && 'bg-green-100 text-green-800',
+                          )}>
+                            {alert.category}
                           </Badge>
                         </TableCell>
                         <TableCell>
